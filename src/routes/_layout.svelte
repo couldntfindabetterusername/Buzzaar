@@ -1,0 +1,97 @@
+<script>
+  import LeftNav from "../components/LeftNav.svelte";
+  import TopNav from "../components/TopNav.svelte";
+  import UserLoginInfo from "../components/UserLoginInfo.svelte";
+  export let segment;
+</script>
+
+<main>
+  <LeftNav {segment} />
+
+  <article
+    style="--margin-left:{segment === undefined ||
+    segment === 'search' ||
+    segment === 'add' ||
+    segment === 'wishlist' ||
+    segment === 'user'
+      ? '300px'
+      : '100px'};--margin-left-at-1000:{segment === undefined ||
+    segment === 'search' ||
+    segment === 'add' ||
+    segment === 'wishlist' ||
+    segment === 'user'
+      ? '240px'
+      : '80px'}"
+  >
+    <TopNav {segment} />
+    <div
+      class="div"
+      style={segment === undefined ||
+      segment === "search" ||
+      segment === "wishlist"
+        ? "margin-top:130px;margin-left:50px"
+        : ""}
+    >
+      <slot />
+      <div
+        class="side-panel"
+        style="display: {segment === undefined ||
+        segment === 'search' ||
+        segment === 'wishlist'
+          ? 'block'
+          : 'none'};"
+      >
+        <UserLoginInfo />
+      </div>
+    </div>
+  </article>
+</main>
+
+<style>
+  :root {
+    --margin-left: 100px;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  main {
+    width: 100%;
+    display: flex;
+    position: relative;
+    overflow-x: hidden;
+  }
+  article {
+    width: 100%;
+    margin-left: var(--margin-left);
+    position: relative;
+  }
+  .div {
+    display: flex;
+  }
+  .side-panel {
+    margin: 0 30px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    article {
+      margin-left: var(--margin-left-at-1000);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    article {
+      margin-left: 60px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    main {
+      flex-direction: column-reverse;
+    }
+    article {
+      margin-left: 0px;
+    }
+  }
+</style>
