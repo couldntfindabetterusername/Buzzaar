@@ -13,6 +13,8 @@
   import UserData from "../../data";
   import BuyNowModal from "../../components/BuyNowModal.svelte";
   import { children } from "svelte/internal";
+  import Arrow from "../../assets/arrow forward.png";
+  import ArrowDown from "../../assets/arrow down.png";
 
   let PersonFound = false,
     ProductFound = false,
@@ -58,9 +60,7 @@
     ColorChosen = false;
   }
 
-  let leftBtn,
-    rightBtn,
-    navDotsContainer,
+  let navDotsContainer,
     currentSlide = 1;
 
   const moveRight = () => {
@@ -88,6 +88,9 @@
       navDots.children[currentSlide - 1].classList.add("active-dot");
     }
   }
+
+  let dropdownOpen1 = false,
+    dropdownopen2 = false;
 </script>
 
 {#if PersonFound && ProductFound}
@@ -97,10 +100,10 @@
         <div class="slider-wrapper">
           <div
             class="left-arrow"
-            bind:this={leftBtn}
             on:click={() => moveLeft()}
+            style={currentSlide === 1 ? "display:none" : ""}
           >
-            left
+            <img src={Arrow} alt="" />
           </div>
           <div class="slider">
             {#each productImages as productImage}
@@ -112,10 +115,10 @@
           </div>
           <div
             class="right-arrow"
-            bind:this={rightBtn}
             on:click={() => moveRight()}
+            style={currentSlide === productImages.length ? "display:none" : ""}
           >
-            right
+            <img src={Arrow} alt="" />
           </div>
 
           <div class="navigation-dots" bind:this={navDotsContainer}>
@@ -141,37 +144,48 @@
             <span class="discount">({discount}% DISCOUNT)</span>
           </div>
           {#if productSizes}
-            <div class="product-sizes">
-              {#each productSizes as productSize}
-                <span
-                  class="product-size"
-                  on:click={(e) => {
-                    const allSize =
-                      document.getElementsByClassName("product-size");
+            <div
+              class="product-sizes variant"
+              style="border: {dropdownOpen1
+                ? '1px solid #444444'
+                : '0.8px solid #c4c4c4'};"
+              on:click={() => {
+                dropdownOpen1 = !dropdownOpen1;
+                dropdownopen2 = false;
+              }}
+            >
+              <span class="variant-heading">Sizes</span>
+              <span
+                class="arrow-down"
+                style="background:url({ArrowDown});background-size:cover;background-position:center;{dropdownOpen1
+                  ? 'transform:rotate(180deg)'
+                  : ''}"
+              />
+              <div
+                class="variant-list"
+                style="display: {dropdownOpen1 ? 'block' : 'none'};"
+              >
+                {#each productSizes as productSize}
+                  <option
+                    value={productSize}
+                    on:click={(e) => {
+                      e.path[2].children[0].innerHTML =
+                        productSize.toUpperCase();
 
-                    for (let i = 0; i < allSize.length; i++) {
-                      allSize[i].style.backgroundColor = "white";
-                      allSize[i].style.border = "0.8px solid #c4c4c4";
-                      allSize[i].style.color = "#444444";
-                    }
+                      SizeChosen = true;
+                      SizeChosenValue = e.target.innerHTML;
 
-                    e.target.style.backgroundColor = "#99319b";
-                    e.target.style.border = "0.8px solid #99319b";
-                    e.target.style.color = "#ffffff";
-
-                    SizeChosen = true;
-                    SizeChosenValue = e.target.innerHTML;
-
-                    if (ColorChosen && SizeChosen) {
-                      alertMsg = false;
-                    }
-                  }}>{productSize}</span
-                >
-              {/each}
+                      if (ColorChosen && SizeChosen) {
+                        alertMsg = false;
+                      }
+                    }}>{productSize}</option
+                  >
+                {/each}
+              </div>
             </div>
           {/if}
           {#if productColors}
-            <div class="product-colors">
+            <!-- <div class="product-colors">
               {#each productColors as productColor}
                 <span
                   class="product-color"
@@ -199,6 +213,47 @@
                   }}>{productColor}</span
                 >
               {/each}
+            </div> -->
+
+            <div
+              class="product-colors variant"
+              style="border: {dropdownopen2
+                ? '1px solid #444444'
+                : '0.8px solid #c4c4c4'};"
+              on:click={() => {
+                dropdownopen2 = !dropdownopen2;
+                dropdownOpen1 = false;
+              }}
+            >
+              <span class="variant-heading">Colors</span>
+              <span
+                class="arrow-down"
+                style="background:url({ArrowDown});background-size:cover;background-position:center;{dropdownopen2
+                  ? 'transform:rotate(180deg)'
+                  : ''}"
+              />
+              <div
+                class="variant-list"
+                style="display: {dropdownopen2 ? 'block' : 'none'};"
+              >
+                {#each productColors as productColor}
+                  <option
+                    class="product-color"
+                    value={productColor}
+                    on:click={(e) => {
+                      e.path[2].children[0].innerHTML =
+                        productColor.toUpperCase();
+
+                      ColorChosen = true;
+                      ColorChosenValue = e.target.innerHTML;
+
+                      if (ColorChosen && SizeChosen) {
+                        alertMsg = false;
+                      }
+                    }}>{productColor}</option
+                  >
+                {/each}
+              </div>
             </div>
           {/if}
         </div>
@@ -352,14 +407,23 @@
   }
   .left-arrow,
   .right-arrow {
-    background: #eee;
+    background: #444444;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+  }
+  .left-arrow {
+    transform: translateY(-50%) scaleX(-1);
+    margin-left: 10px;
   }
   .right-arrow {
     right: 0;
+    margin-right: 10px;
   }
   .navigation-dots {
     position: absolute;
@@ -435,7 +499,7 @@
     font-weight: 400;
     font-size: 17px;
   }
-  .product-sizes {
+  /* .product-sizes {
     display: flex;
     justify-content: space-between;
     text-transform: uppercase;
@@ -451,24 +515,58 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  } */
+  .variant {
+    position: relative;
+    border-radius: 10px;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .variant-heading {
+    font-size: 22px;
+    font-weight: 500;
+    color: #444444;
+  }
+  .arrow-down {
+    width: 20px;
+    height: 20px;
+    transition: all 100ms;
+  }
+  .variant-list {
+    position: absolute;
+    top: 101%;
+    background: #ffffff;
+    width: 100%;
+    left: 0;
+    border: 0.8px solid #c4c4c4;
+    border-radius: 10px;
+    transition: all 200ms;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .variant-list option {
+    padding: 10px 30px;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+    color: #444444;
+  }
+  .variant-list option:hover {
+    background-color: #e3e3e3;
   }
   .product-colors {
-    display: flex;
-    justify-content: space-between;
     margin: 35px 0;
-    text-transform: uppercase;
-    font-size: 15px;
-    font-weight: 600;
   }
   .product-color {
-    width: 100px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 0.5px solid #c4c4c4;
-    border-radius: 5px;
+    text-transform: capitalize;
   }
+  /* .color-box {
+    width: 50px;
+    height: 20px;
+    margin-right: 20px;
+  } */
   .seller-msg {
     padding: 15px 0;
     width: 100%;
