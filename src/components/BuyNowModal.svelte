@@ -1,7 +1,11 @@
 <script>
   // import Product from "../routes/[user]/[product].svelte";
+  import Arrow from "../assets/arrow(dark).png";
+  import ArrowForward from "../assets/arrow forward.png";
 
   export let SizeChosenValue, ColorChosenValue, Product;
+
+  let form;
 
   const deliveryCharge = 50;
 
@@ -35,6 +39,37 @@
       e.path[3].nextElementSibling.style.visibility = "visible";
     }
   }
+
+  let navDotsContainer,
+    currentSlide = 1;
+
+  const moveRight = () => {
+    const slider = document.getElementsByClassName("slider")[1];
+    console.log(slider);
+    if (currentSlide < Product.productImages.length) {
+      slider.style.transform = "translateX(-" + 405 * currentSlide + "px)";
+      currentSlide++;
+    }
+  };
+  const moveLeft = () => {
+    const slider = document.getElementsByClassName("slider")[1];
+    console.log(slider);
+    if (currentSlide > 1) {
+      slider.style.transform =
+        "translateX(-" + 405 * (currentSlide - 2) + "px)";
+      currentSlide--;
+    }
+  };
+
+  $: navDots = navDotsContainer;
+  $: {
+    if (navDots) {
+      for (let i = 0; i < navDots.children.length; i++) {
+        navDots.children[i].classList.remove("active-dot");
+      }
+      navDots.children[currentSlide - 1].classList.add("active-dot");
+    }
+  }
 </script>
 
 <main>
@@ -42,10 +77,18 @@
     <div class="modal">
       <div class="slide">
         <div class="heading-wrapper">
+          <img
+            src={Arrow}
+            alt=""
+            class="back-arrow"
+            on:click={() => {
+              form.reset();
+            }}
+          />
           <span class="heading">create your profile card</span>
           <span class="page">1 / 3</span>
         </div>
-        <div class="form" on:submit|preventDefault>
+        <form class="form" on:submit|preventDefault bind:this={form}>
           <div class="flex">
             <div class="flex flex-column input-label">
               <label for="name">name</label>
@@ -132,15 +175,48 @@
               >save & next</button
             >
           </div>
-        </div>
+        </form>
       </div>
       <div class="slide">
         <div class="heading-wrapper">
+          <img src={Arrow} alt="" class="back-arrow" />
+
           <span class="heading">confirm your product card</span>
           <span class="page">2 / 3</span>
         </div>
         <div class="product-review-wrapper">
-          <div class="img-slider" />
+          <div class="slider-wrapper">
+            <div
+              class="left-arrow"
+              on:click={() => moveLeft()}
+              style={currentSlide === 1 ? "display:none" : ""}
+            >
+              <img src={ArrowForward} alt="" />
+            </div>
+            <div class="slider">
+              {#each Product.productImages as productImage}
+                <div
+                  class="product-image"
+                  style="background: url({productImage});background-position: center;background-size: 100%;background-repeat:no-repeat"
+                />
+              {/each}
+            </div>
+            <div
+              class="right-arrow"
+              on:click={() => moveRight()}
+              style={currentSlide === Product.productImages.length
+                ? "display:none"
+                : ""}
+            >
+              <img src={ArrowForward} alt="" />
+            </div>
+
+            <div class="navigation-dots" bind:this={navDotsContainer}>
+              {#each Product.productImages as productImg}
+                <div class="single-dot active-dot" />
+              {/each}
+            </div>
+          </div>
           <div class="product-info">
             <div class="product-info-container">
               <div class="product-heading-wrapper flex">
@@ -235,6 +311,11 @@
     font-size: 20px;
     border-bottom: 0.7px solid #c4c4c4;
   }
+  .back-arrow {
+    cursor: pointer;
+    width: 25px;
+    transform: scale(-1);
+  }
   .heading {
     font-weight: 700;
   }
@@ -317,9 +398,69 @@
     display: flex;
     padding: 50px;
   }
+  .slider-wrapper {
+    position: relative;
+    width: 405px;
+    height: 450px;
+    overflow: hidden;
+  }
+  .slider {
+    height: 450px;
+    width: 400%;
+    display: flex;
+    position: absolute;
+    transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .product-image {
+    height: 100%;
+    width: 405px;
+  }
+  .left-arrow,
+  .right-arrow {
+    background: #444444;
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
+    z-index: 2;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+  }
+  .left-arrow {
+    transform: translateY(-50%) scaleX(-1);
+    margin-left: 10px;
+  }
+  .right-arrow {
+    right: 0;
+    margin-right: 10px;
+  }
+  .navigation-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
+  .single-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0px 0px 10px #444444;
+  }
+  .active-dot {
+    width: 12px;
+    height: 12px;
+    margin: 2px 0;
+    background: #eeeeee;
+  }
   .product-info {
     margin-left: 50px;
-    width: 50%;
+    width: 48%;
   }
   .product-info-container {
     margin-bottom: 60px;

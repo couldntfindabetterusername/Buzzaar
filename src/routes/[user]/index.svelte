@@ -162,6 +162,7 @@
     flex-direction: column;
     align-items: center;
     margin: auto;
+    background: #fbfbfb;
   }
   .user-info {
     margin: 50px 0;

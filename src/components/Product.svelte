@@ -2,6 +2,7 @@
   import ProductData from "../homePageProductsData";
   import Wishlist from "../assets/wishlist.png";
   import WishlistFill from "../assets/wishlist solid fill.png";
+  import ArrowWhite from "../assets/arrow(white).png";
 
   let saved = false;
 
@@ -66,7 +67,9 @@
     <div class="check-wrapper">
       <span class="price">₹ {product.productPrize}</span>
       <a href="/treschic/{product.productId}"
-        ><span class="check">Check</span></a
+        ><span class="check"
+          >Check&nbsp;<img style="width:22px" src={ArrowWhite} alt="" /></span
+        ></a
       >
     </div>
   </div>
@@ -80,10 +83,11 @@
     color: #444444;
   }
   .container {
+    transform: scale(1.1);
     padding: 20px 40px;
     border: 0.7px solid #c4c4c4;
     border-radius: 10px;
-    margin: 20px auto;
+    margin: 60px auto 100px auto;
     width: fit-content;
     font-family: "Montserrat", sans-serif;
     background: #ffffff;
@@ -142,7 +146,6 @@
     color: #99319b;
     border: 1px solid #99319b;
     border-radius: 10px;
-    padding: 15px 0;
     overflow: hidden;
   }
   .check-wrapper span {
@@ -152,5 +155,6 @@
     color: #ffffff;
     background: #99319b;
     border: 1px solid #99319b;
+    display: inline-flex;
   }
 </style>

@@ -24,6 +24,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #fbfbfb;
   }
   .search-bar {
     margin: 30px 0;

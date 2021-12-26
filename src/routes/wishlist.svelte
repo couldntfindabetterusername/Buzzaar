@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #fbfbfb;
   }
   div {
     margin: 30px;

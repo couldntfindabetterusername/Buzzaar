@@ -186,6 +186,7 @@
     width: 300px;
     border: 0.5px solid rgb(196 196 196 / 85%);
     border-radius: 15px;
+    background: #fbfbfb;
   }
   .container {
     margin: 80px 50px;

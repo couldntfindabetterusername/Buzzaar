@@ -15,6 +15,9 @@
   import { children } from "svelte/internal";
   import Arrow from "../../assets/arrow forward.png";
   import ArrowDown from "../../assets/arrow down.png";
+  import ArrowWhite from "../../assets/arrow(white).png";
+  import ArrowDark from "../../assets/arrow(dark).png";
+  import ArrowPurple from "../../assets/arrow(purple).png";
 
   let PersonFound = false,
     ProductFound = false,
@@ -136,7 +139,14 @@
               style="background: url({pfp});background-size:cover;background-position:center;"
             />
             <span id="name-of-seller">{name}</span>
-            <a href="/{username}" id="seller-link">check</a>
+            <a href="/{username}" id="seller-link"
+              >check&nbsp;<img
+                class="arrow"
+                src={ArrowPurple}
+                style="width:21px;"
+                alt=""
+              /></a
+            >
           </div>
           <div class="product-name">{productName}</div>
           <div class="pricing">
@@ -185,36 +195,6 @@
             </div>
           {/if}
           {#if productColors}
-            <!-- <div class="product-colors">
-              {#each productColors as productColor}
-                <span
-                  class="product-color"
-                  style="color: {productColor};"
-                  on:click={(e) => {
-                    const allColors =
-                      document.getElementsByClassName("product-color");
-
-                    for (let i = 0; i < allColors.length; i++) {
-                      allColors[i].style.backgroundColor = "white";
-                      allColors[i].style.border = "0.5px solid #c4c4c4";
-                      allColors[i].style.color = allColors[i].innerHTML;
-                    }
-
-                    e.target.style.backgroundColor = productColor;
-                    e.target.style.border = `0.8px solid ${productColor}`;
-                    e.target.style.color = "#ffffff";
-
-                    ColorChosen = true;
-                    ColorChosenValue = e.target.innerHTML;
-
-                    if (ColorChosen && SizeChosen) {
-                      alertMsg = false;
-                    }
-                  }}>{productColor}</span
-                >
-              {/each}
-            </div> -->
-
             <div
               class="product-colors variant"
               style="border: {dropdownopen2
@@ -278,7 +258,8 @@
                 } else {
                   alertMsg = true;
                 }
-              }}>Buy Now</span
+              }}
+              >Buy Now&nbsp;<img src={ArrowWhite} class="arrow" alt="" /></span
             >
           </div>
         </div>
@@ -407,6 +388,7 @@
   }
   .left-arrow,
   .right-arrow {
+    cursor: pointer;
     background: #444444;
     position: absolute;
     top: 50%;
@@ -469,7 +451,7 @@
   #name-of-seller {
     font-size: 26px;
     font-weight: 600;
-    width: 200px;
+    width: 160px;
     color: #444;
   }
   #seller-link {
@@ -479,6 +461,8 @@
     text-transform: uppercase;
     font-weight: 500;
     color: #99319b;
+    font-size: 17px;
+    display: flex;
   }
   .product-name {
     font-size: 28px;
@@ -499,23 +483,7 @@
     font-weight: 400;
     font-size: 17px;
   }
-  /* .product-sizes {
-    display: flex;
-    justify-content: space-between;
-    text-transform: uppercase;
-  }
-  .product-size {
-    font-size: 27px;
-    font-weight: 600;
-    color: #444;
-    border: 0.8px solid #c4c4c4;
-    border-radius: 5px;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
+
   .variant {
     position: relative;
     border-radius: 10px;
@@ -523,6 +491,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
   }
   .variant-heading {
     font-size: 22px;
@@ -593,7 +562,6 @@
   }
   .final-pricing {
     border: 0.5px solid #99319b;
-    padding: 15px 0;
     border-radius: 5px;
     font-size: 22px;
     font-weight: 600;
@@ -604,7 +572,13 @@
   }
   .buy-now {
     color: #ffffff;
+    display: inline-flex;
     background-color: #99319b;
+    cursor: pointer;
+  }
+
+  .arrow {
+    width: 26px;
   }
   .alert-msg {
     margin: 0 35px;
