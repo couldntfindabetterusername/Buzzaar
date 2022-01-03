@@ -16,8 +16,14 @@
     e.path[0].classList.add("active");
   };
 
+  let screenWidth;
+  $: activeHeight =
+    ((screenWidth - 0.05 * screenWidth - 45) * 0.75).toString() + "px";
+
   export let product;
 </script>
+
+<svelte:window bind:innerWidth={screenWidth} />
 
 <div class="container">
   <div class="top">
@@ -42,7 +48,7 @@
       />
     </div>
   </div>
-  <div class="image-grid">
+  <div class="image-grid" style="--active-height:{activeHeight}">
     <div
       class="active grid-item"
       style="background: url({product.productImages[0]}) center center / cover;"
@@ -68,7 +74,7 @@
       <span class="price">₹ {product.productPrize}</span>
       <a href="/treschic/{product.productId}"
         ><span class="check"
-          >Check&nbsp;<img style="width:22px" src={ArrowWhite} alt="" /></span
+          >Check&nbsp;<img class="arrow" src={ArrowWhite} alt="" /></span
         ></a
       >
     </div>
@@ -156,5 +162,45 @@
     background: #99319b;
     border: 1px solid #99319b;
     display: inline-flex;
+  }
+  .arrow {
+    width: 22px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .container {
+      margin: 15px auto 0 auto;
+      width: 90%;
+      transform: unset;
+      padding: 20px 15px;
+    }
+    .name-info {
+      font-size: 21px;
+    }
+    .collection-name {
+      font-size: 10px;
+    }
+    .icon {
+      width: 25px;
+      height: 25px;
+    }
+    .image-grid {
+      grid-gap: 15px;
+      margin: 15px 0;
+      width: 100%;
+      height: unset;
+    }
+    .active {
+      height: var(--active-height);
+    }
+    .check-wrapper {
+      font-size: 13px;
+    }
+    .check-wrapper span {
+      padding: 10px;
+    }
+    .arrow {
+      width: 17px;
+    }
   }
 </style>
