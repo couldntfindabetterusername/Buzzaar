@@ -29,13 +29,13 @@
       style={segment === undefined ||
       segment === "search" ||
       segment === "wishlist"
-        ? "margin-top:130px;margin-left:50px"
+        ? "--div-margin-top:130px;--div-margin-left:50px"
         : ""}
     >
       <slot />
       <div
         class="side-panel"
-        style="display: {segment === undefined ||
+        style="--display: {segment === undefined ||
         segment === 'search' ||
         segment === 'wishlist'
           ? 'block'
@@ -69,9 +69,12 @@
   }
   .div {
     display: flex;
+    margin-top: var(--div-margin-top);
+    margin-left: var(--div-margin-left);
   }
   .side-panel {
     margin: 0 30px;
+    display: var(--display);
   }
 
   @media screen and (max-width: 1000px) {
@@ -92,6 +95,12 @@
     }
     article {
       margin-left: 0px;
+    }
+    .div {
+      margin-left: 0;
+    }
+    .side-panel {
+      display: none;
     }
   }
 </style>
