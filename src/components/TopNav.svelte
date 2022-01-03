@@ -1,15 +1,25 @@
 <script>
-  let menuOpen = false;
-  const openMenu = (element) => {
-    console.log(element.path[0]);
+  let menuOpen = false,
+    menuBtn,
+    menuItems;
+
+  const menuHandler = () => {
     if (!menuOpen) {
-      element.path[0].style.background = "none";
+      console.log(menuBtn.children);
+      menuBtn.children[0].style.transform = "translateY(0px) rotate(45deg)";
+      menuBtn.children[1].style.opacity = "0";
+      menuBtn.children[2].style.transform = "translateY(0px) rotate(-45deg)";
+      menuItems.style.left = "unset";
+      menuItems.style.right = "0";
       menuOpen = true;
     } else {
-      element.path[1].classList.remove("open");
+      menuBtn.children[0].style.transform = "translateY(-10px)";
+      menuBtn.children[1].style.opacity = "1";
+      menuBtn.children[2].style.transform = "translateY(10px)";
+      menuItems.style.left = "100%";
+      menuItems.style.right = "unset";
       menuOpen = false;
     }
-    console.log(element.path[1].classList);
   };
 
   export let segment;
@@ -21,14 +31,16 @@
   segment === "add" ||
   segment === "wishlist" ||
   segment === "user"
-    ? "position:fixed;--left:100px;z-index:2;border-bottom:unset;--responsive-left:60px;--responsive-left-mobile:0;width:1588px"
+    ? "--left:100px;border-bottom:unset;--responsive-left:60px;--responsive-left-mobile:0"
     : ""}
 >
   <a href="/" class="logo">Buzzaar</a>
-  <div class="menu-btn" on:click={(e) => openMenu(e)}>
+  <div class="menu-btn" bind:this={menuBtn} on:click={() => menuHandler()}>
+    <div class="menu-btn-burger" />
+    <div class="menu-btn-burger" />
     <div class="menu-btn-burger" />
   </div>
-  <div class="nav-items">
+  <div class="nav-items" bind:this={menuItems}>
     <a href="/contact open">Contact</a>
     <a href="/faq">FAQ</a>
     <a href="/help">Help</a>
@@ -52,7 +64,8 @@
     border-bottom: 0.5px solid #c4c4c48e;
     left: var(--left);
     background: #ffffff;
-    /* box-shadow: 0 20px 20px #ffffff; */
+    position: fixed;
+    z-index: 3;
   }
   .logo {
     font-family: "DM Serif Display", sans-serif;
@@ -86,25 +99,24 @@
     align-items: center;
     transition: all 0.5s ease-in-out;
     display: none;
+    z-index: 2;
   }
-  .menu-btn-burger,
-  .menu-btn-burger::before,
-  .menu-btn-burger::after {
+  .menu-btn-burger {
     width: 30px;
     height: 4px;
     border-radius: 3px;
     background-color: #444;
     transition: all 0.5s ease-in-out;
   }
-  .menu-btn-burger::before,
-  .menu-btn-burger::after {
+  .menu-btn-burger:first-child,
+  .menu-btn-burger:last-child {
     content: "";
     position: absolute;
   }
-  .menu-btn-burger::before {
+  .menu-btn-burger:first-child {
     transform: translateY(-10px);
   }
-  .menu-btn-burger::after {
+  .menu-btn-burger:last-child {
     transform: translateY(10px);
   }
 
@@ -125,12 +137,20 @@
       display: flex;
     }
     .nav-items {
-      display: none;
+      position: absolute;
+      left: 100%;
     }
   }
   @media screen and (max-width: 480px) {
     nav {
       left: var(--responsive-left-mobile);
+      width: 80%;
+      justify-content: space-between;
+      padding: 18px 10%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      font-size: 40px;
     }
   }
 </style>
