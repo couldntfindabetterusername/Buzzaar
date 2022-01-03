@@ -21,16 +21,14 @@
     segment === 'wishlist' ||
     segment === 'user'
       ? '240px'
-      : '80px'}"
+      : '80px'};"
   >
     <TopNav {segment} />
     <div
       class="div"
-      style={segment === undefined ||
-      segment === "search" ||
-      segment === "wishlist"
-        ? "--div-margin-top:130px;--div-margin-left:50px"
-        : ""}
+      style={segment === "user" || segment === "add"
+        ? ""
+        : "--div-margin-top:130px;--div-margin-left:50px"}
     >
       <slot />
       <div
@@ -98,6 +96,7 @@
     }
     .div {
       margin-left: 0;
+      margin-top: 110px;
     }
     .side-panel {
       display: none;

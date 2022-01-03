@@ -16,4 +16,10 @@
     border: 0.5px solid rgba(196, 196, 196, 0.85);
     border-radius: 15px;
   }
+  @media screen and (max-width: 480px) {
+    main {
+      padding: unset;
+      border: unset;
+    }
+  }
 </style>

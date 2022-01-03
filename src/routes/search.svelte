@@ -2,10 +2,15 @@
   import Icon from "../assets/loupe.png";
   import Data from "../homePageProductsData";
   import ProductGrid from "../components/ProductGrid.svelte";
+
+  let screenWidth;
+
+  $: width = (screenWidth - 110).toString() + "px";
 </script>
 
+<svelte:window bind:innerWidth={screenWidth} />
 <main>
-  <div class="search-bar">
+  <div class="search-bar" style="--width:{width}">
     <img src={Icon} alt="" id="search-icon" />
     <input
       type="text"
@@ -45,5 +50,20 @@
     font-size: 18px;
     font-family: "Montserrat";
     width: 100%;
+  }
+
+  @media screen and (max-width: 480px) {
+    main {
+      padding: unset;
+      border: unset;
+      margin: 0 25px;
+    }
+    .search-bar {
+      width: var(--width);
+      margin: 15px 0 30px;
+    }
+    input {
+      font-size: 17px;
+    }
   }
 </style>

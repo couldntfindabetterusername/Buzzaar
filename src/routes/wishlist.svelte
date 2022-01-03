@@ -29,4 +29,19 @@
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
   }
+
+  @media screen and (max-width: 480px) {
+    main {
+      padding: unset;
+      border: unset;
+      margin: 0 25px;
+    }
+    div {
+      margin: 15px;
+      width: 100%;
+    }
+    .heading {
+      font-size: 24px;
+    }
+  }
 </style>

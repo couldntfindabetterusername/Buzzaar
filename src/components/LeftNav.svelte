@@ -226,7 +226,7 @@
     box-shadow: var(--box-shadow);
     position: fixed;
     background: #ffffff;
-    z-index: 2;
+    z-index: 4;
   }
   .nav-icons {
     height: var(--nav-icons-height);

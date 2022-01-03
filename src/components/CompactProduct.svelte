@@ -2,7 +2,11 @@
   export let product;
   import Product from "../components/Product.svelte";
   let openModal = false;
-  let modalContainer;
+  let modalContainer, screenWidth;
+
+  $: imgWidth = ((screenWidth - 130) / 3).toString() + "px";
+  $: smallImgWidth = ((screenWidth - 130) / 6).toString() + "px";
+  $: imgHeight = ((screenWidth - 130) / 3 + 10).toString() + "px";
 </script>
 
 <div
@@ -18,12 +22,14 @@
     <div
       class="img"
       id="img-1"
-      style="background-image: url({product.productImages[0]});"
+      style="background-image: url({product
+        .productImages[0]});--width:{imgWidth};--height:{imgHeight}"
     />
     <div
       class="img"
       id="img-2"
-      style="background-image: url({product.productImages[1]});"
+      style="background-image: url({product
+        .productImages[1]});--small-width:{smallImgWidth}"
     />
     <div
       class="img"
@@ -33,6 +39,7 @@
 </div>
 
 <svelte:window
+  bind:innerWidth={screenWidth}
   on:click={(e) => {
     if (e.target == modalContainer) {
       modalContainer.style.display = "none";
@@ -99,5 +106,30 @@
     justify-content: center;
     align-items: center;
     z-index: 10;
+  }
+
+  @media screen and (max-width: 480px) {
+    .container {
+      width: unset;
+      padding: 10px;
+    }
+    .product-name {
+      font-size: 16px;
+    }
+    .images {
+      grid-gap: 10px;
+    }
+    .img {
+      width: var(--small-width);
+      height: var(--small-width);
+    }
+    #img-1 {
+      width: var(--width);
+      height: var(--height);
+      margin-right: unset;
+    }
+    #img-2 {
+      margin-bottom: unset;
+    }
   }
 </style>
