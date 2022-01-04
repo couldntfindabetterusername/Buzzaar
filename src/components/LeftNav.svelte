@@ -225,7 +225,6 @@
     height: 100vh;
     box-shadow: var(--box-shadow);
     position: fixed;
-    background: #ffffff;
     z-index: 4;
   }
   .nav-icons {
@@ -315,6 +314,7 @@
       height: 60px;
       position: fixed;
       bottom: 0;
+      background: #ffffff;
     }
 
     .nav-icons {
