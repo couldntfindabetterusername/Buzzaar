@@ -41,7 +41,7 @@
     <div class="menu-btn-burger" />
   </div>
   <div class="nav-items" bind:this={menuItems}>
-    <a href="/contact open">Contact</a>
+    <a href="/contact">Contact</a>
     <a href="/faq">FAQ</a>
     <a href="/help">Help</a>
     <a href="/seller">Become a seller</a>
