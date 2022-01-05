@@ -1,7 +1,8 @@
 <script>
   let menuOpen = false,
     menuBtn,
-    menuItems;
+    menuWrapper,
+    hamburgerBG;
 
   const menuHandler = () => {
     if (!menuOpen) {
@@ -9,22 +10,37 @@
       menuBtn.children[0].style.transform = "translateY(0px) rotate(45deg)";
       menuBtn.children[1].style.opacity = "0";
       menuBtn.children[2].style.transform = "translateY(0px) rotate(-45deg)";
-      menuItems.style.left = "unset";
-      menuItems.style.right = "0";
+      for (let i = 0; i < menuBtn.children.length; i++) {
+        menuBtn.children[i].style.background = "#ffffff";
+      }
+      // hamburgerBG.style.opacity = "1";
+      // hamburgerBG.style.display = "block";
+      menuWrapper.style.transform = "translateX(0)";
+      menuWrapper.style.background = "rgba(0,0,0,0.5)";
       menuOpen = true;
     } else {
       menuBtn.children[0].style.transform = "translateY(-10px)";
       menuBtn.children[1].style.opacity = "1";
       menuBtn.children[2].style.transform = "translateY(10px)";
-      menuItems.style.left = "100%";
-      menuItems.style.right = "unset";
+      for (let i = 0; i < menuBtn.children.length; i++) {
+        menuBtn.children[i].style.background = "#444444";
+      }
+      // hamburgerBG.style.opacity = "0";
+      // hamburgerBG.style.display = "none";
+      menuWrapper.style.transform = "translateX(100vw)";
+      menuWrapper.style.background = "unset";
       menuOpen = false;
     }
   };
 
+  let screenHeight;
+
+  $: height = (screenHeight + 0).toString() + "px";
+  $: hamburgerWrapperHeight = (screenHeight - 130).toString() + "px";
   export let segment;
 </script>
 
+<svelte:window bind:innerHeight={screenHeight} />
 <nav
   style={segment === undefined ||
   segment === "search" ||
@@ -40,11 +56,47 @@
     <div class="menu-btn-burger" />
     <div class="menu-btn-burger" />
   </div>
-  <div class="nav-items" bind:this={menuItems}>
+
+  <!--for desktop-->
+  <div class="nav-items">
     <a href="/contact">Contact</a>
     <a href="/faq">FAQ</a>
     <a href="/help">Help</a>
     <a href="/seller">Become a seller</a>
+  </div>
+
+  <!--for hamburger menu-->
+  <!-- <div class="hamburger-bg" bind:this={hamburgerBG} style="--height:{height}" /> -->
+
+  <div
+    class="hamburger-wrapper"
+    bind:this={menuWrapper}
+    style="--height:{height}"
+  >
+    <div class="nav-items-wrapper">
+      <div
+        class="nav-items-hamburger-wrapper"
+        style="--hamburger-height:{hamburgerWrapperHeight}"
+      >
+        <div class="nav-items-hamburger">
+          <span class="hamburger-username">hello, (user)</span>
+
+          <a href="/user" class="mobile-view">My Profile</a>
+          <a href="/orders" class="mobile-view">Orders</a>
+          <a href="/contact">Contact</a>
+          <a href="/faq">FAQ</a>
+          <a href="/help">Help</a>
+          <a href="#" class="mobile-view">Sign Out</a>
+          <a href="/seller">Become a seller</a>
+        </div>
+        <div class="hamburger-bottom">
+          <hr />
+          <span class="hamburger-buzzaar">Buzzaar</span>
+          <span class="hamburger-marketplace">marketplace</span>
+          <span class="hamburger-instagram-wrapper"> Check us out at </span>
+        </div>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -90,6 +142,9 @@
     color: #fff;
     border-radius: 10px;
   }
+  .mobile-view {
+    display: none;
+  }
 
   .menu-btn {
     position: relative;
@@ -120,6 +175,13 @@
     transform: translateY(10px);
   }
 
+  .hamburger-wrapper {
+    display: none;
+  }
+
+  /* .hamburger-bg {
+    display: none;
+  } */
   @media screen and (max-width: 920px) {
     .logo {
       font-size: 50px;
@@ -136,9 +198,102 @@
     .menu-btn {
       display: flex;
     }
+
     .nav-items {
+      display: none;
+    }
+
+    /* .hamburger-bg {
+      display: block;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
       position: absolute;
-      left: 100%;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: var(--height);
+      display: none;
+      z-index: -1;
+    } */
+    .hamburger-wrapper {
+      display: block;
+      width: 100vw;
+      height: var(--height);
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translateX(100vw);
+      transition: all 0.5s ease-in-out;
+    }
+    .nav-items-wrapper {
+      position: absolute;
+      background: #99319b;
+      font-family: "Montserrat", sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      width: 70%;
+      right: 0;
+      height: 100%;
+      border-radius: 10px 0 0 10px;
+    }
+    .nav-items-hamburger-wrapper {
+      margin: 100px 40px 30px;
+      height: var(--hamburger-height);
+    }
+    .nav-items-hamburger-wrapper,
+    .nav-items-hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .nav-items-hamburger a:last-child {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      color: #99319b;
+      text-align: center;
+    }
+    .hamburger-username {
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 40px;
+    }
+    .nav-items-hamburger {
+      height: 360px;
+    }
+    .nav-items-hamburger a {
+      color: #ffffff;
+    }
+
+    .hamburger-bottom {
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hamburger-bottom hr {
+      width: 100%;
+      background: #ffffff;
+    }
+    .hamburger-buzzaar {
+      font-family: "DM Serif Display";
+      font-style: italic;
+      font-size: 37px;
+    }
+    .hamburger-marketplace {
+      text-transform: uppercase;
+      font-size: 15px;
+      letter-spacing: 2px;
+    }
+    .hamburger-instagram-wrapper {
+      margin-top: 30px;
+      font-size: 15px;
+    }
+
+    .mobile-view {
+      display: block;
     }
   }
   @media screen and (max-width: 480px) {

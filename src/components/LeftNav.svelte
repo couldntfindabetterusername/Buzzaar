@@ -287,6 +287,7 @@
     nav {
       width: 60px;
       box-shadow: 2px 0 10px rgb(68 68 68 / 15%);
+      z-index: 2;
     }
 
     .nav-icons {
