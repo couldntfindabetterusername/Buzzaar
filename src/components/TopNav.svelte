@@ -1,8 +1,10 @@
 <script>
+  import UserLogin from "./UserLoginInfo.svelte";
   let menuOpen = false,
     menuBtn,
     menuWrapper,
-    hamburgerBG;
+    loggedIn = false,
+    isBuyer = false;
 
   const menuHandler = () => {
     if (!menuOpen) {
@@ -79,15 +81,21 @@
         style="--hamburger-height:{hamburgerWrapperHeight}"
       >
         <div class="nav-items-hamburger">
-          <span class="hamburger-username">hello, (user)</span>
+          {#if loggedIn}
+            <span class="hamburger-username">hello, (user)</span>
+            <a href="/user" class="mobile-view">My Profile</a>
+            <a href="/orders" class="mobile-view">Orders</a>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/help">Help</a>
+            <a href="#" class="mobile-view">Sign Out</a>
 
-          <a href="/user" class="mobile-view">My Profile</a>
-          <a href="/orders" class="mobile-view">Orders</a>
-          <a href="/contact">Contact</a>
-          <a href="/faq">FAQ</a>
-          <a href="/help">Help</a>
-          <a href="#" class="mobile-view">Sign Out</a>
-          <a href="/seller">Become a seller</a>
+            {#if isBuyer}
+              <a href="/seller" class="become-seller-btn">Become a seller</a>
+            {/if}
+          {:else}
+            <UserLogin />
+          {/if}
         </div>
         <div class="hamburger-bottom">
           <hr />
@@ -246,8 +254,14 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      color: #ffffff;
     }
-    .nav-items-hamburger a:last-child {
+
+    .nav-items-hamburger a {
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+    .nav-items-hamburger a.become-seller-btn {
       background: #fff;
       border-radius: 10px;
       padding: 10px;
@@ -259,12 +273,6 @@
       font-weight: 700;
       color: #ffffff;
       margin-bottom: 40px;
-    }
-    .nav-items-hamburger {
-      height: 360px;
-    }
-    .nav-items-hamburger a {
-      color: #ffffff;
     }
 
     .hamburger-bottom {

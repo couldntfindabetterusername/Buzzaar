@@ -8,12 +8,16 @@
   let passwordVisible = false;
   let src = ShowPassword;
   let modalContainer;
+
+  let screenHeight;
+  $: height = (screenHeight + 0).toString() + "px";
 </script>
 
 <svelte:window
+  bind:innerHeight={screenHeight}
   on:click={(e) => {
     if (e.target == modalContainer) {
-      modalContainer.style.display = "none";
+      modalContainer.style.transform = "translateY(100vh)";
       signup = false;
       login = false;
     }
@@ -39,6 +43,7 @@
         on:click={() => {
           signup = true;
           login = false;
+          modalContainer.style.transform = "translateY(-100px)";
         }}>Sign up for free</span
       >
       <span class="or">or</span>
@@ -47,6 +52,7 @@
         on:click={() => {
           login = true;
           signup = false;
+          modalContainer.style.transform = "translateY(-100px)";
         }}>Log in</span
       >
     </div>
@@ -54,7 +60,7 @@
 </main>
 
 {#if login || signup}
-  <section bind:this={modalContainer}>
+  <section bind:this={modalContainer} style="--height:{height}">
     <div class="modal">
       {#if login}
         <div
@@ -62,7 +68,9 @@
           style="background: url({LoginAsset}) center center / cover;"
         />
         <div class="right">
-          <span class="modal-heading">Login into your Buzzaar account</span>
+          <span class="modal-heading" id="login-heading"
+            >Login into your Buzzaar account</span
+          >
           <form action="">
             <div class="form-item">
               <label for="username">Email address/Number</label>
@@ -353,5 +361,65 @@
     position: absolute;
     right: 20px;
     top: 58%;
+  }
+
+  @media screen and (max-width: 768px) {
+    main {
+      background: unset;
+      border: unset;
+      width: 100%;
+    }
+    .container {
+      margin: 20px 0;
+      color: #ffffff;
+    }
+    .signup,
+    .login {
+      font-size: 21px;
+      font-weight: 500;
+      margin: 15px 0;
+      color: #ffffff;
+    }
+    .signup {
+      margin-top: 40px;
+      background: #ffffff;
+      color: #99319b;
+    }
+    .or {
+      font-size: 18px;
+      margin: unset;
+      font-weight: 500;
+    }
+
+    section {
+      top: unset;
+      transform: translateY(100vh);
+      align-items: flex-end;
+      transition: all 0.5s ease-in-out;
+      height: var(--height);
+    }
+
+    .modal {
+      width: 100%;
+      border-radius: 15px 15px 0 0;
+    }
+    .left {
+      display: none;
+    }
+    .right {
+      padding: 30px;
+    }
+    #login-heading {
+      font-size: 21px;
+    }
+    .form-item {
+      margin-top: 20px;
+    }
+    label {
+      font-size: 18px;
+    }
+    input {
+      font-size: 16px;
+    }
   }
 </style>
