@@ -36,13 +36,18 @@
 
     e.path[0].classList.add("active");
   };
+
+  let screenWidth;
+  $: width = (screenWidth - 30).toString() + "px";
+  $: nameInfoWidth = (screenWidth - 130).toString() + "px";
 </script>
 
 <svelte:head>
   <title>{name} at Buzzar</title></svelte:head
 >
 
-<main>
+<svelte:window bind:innerWidth={screenWidth} />
+<main style="--width:{width};--name-info-width:{nameInfoWidth}">
   <div class="user-info">
     <div class="followers-panel">
       <div
@@ -51,10 +56,15 @@
       />
       <div class="name-and-info">
         <div class="name">
-          <span id="username">{name}</span>
+          <span id="username"
+            >{name}
+            <div class="buzzar-code buzzar-code-responsive responsive-mobile">
+              {buzzarCode}
+            </div></span
+          >
           <p id="user-tag">{tags}</p>
         </div>
-        <div class="info">
+        <div class="info non-responsive-mobile">
           <div class="prod-coll">
             <span class="prod-coll-name">PRODUCTS</span><span
               class="prod-coll-num">{products.length}</span
@@ -68,7 +78,21 @@
         </div>
       </div>
     </div>
-    <div class="buzzar-code">Buzzar Code: {buzzarCode}</div>
+    <div class="info info-responsive responsive-mobile">
+      <div class="prod-coll">
+        <span class="prod-coll-name">PRODUCTS</span><span class="prod-coll-num"
+          >{products.length}</span
+        >
+      </div>
+      <div class="prod-coll">
+        <span class="prod-coll-name">COLLECTIONS</span><span
+          class="prod-coll-num">{collections.length}</span
+        >
+      </div>
+    </div>
+    <div class="buzzar-code non-responsive-mobile">
+      Buzzar Code: {buzzarCode}
+    </div>
     <div class="bio">
       <div class="message-section">
         <span id="user-msg">{name}'s message</span>
@@ -340,5 +364,73 @@
     text-align: center;
     line-height: 24px;
     background: rgba(255, 255, 255, 0.8);
+  }
+
+  .responsive-mobile {
+    display: none;
+  }
+  .non-responsive-mobile {
+    display: block;
+  }
+  @media screen and (max-width: 480px) {
+    .responsive-mobile {
+      display: block;
+    }
+    .non-responsive-mobile {
+      display: none;
+    }
+
+    main {
+      width: 100%;
+      padding: 15px;
+    }
+    main > div {
+      align-self: baseline;
+    }
+    .user-info {
+      width: var(--width);
+      margin: unset;
+    }
+
+    .pfp {
+      width: 80px;
+      height: 80px;
+    }
+    .name-and-info {
+      margin-left: 20px;
+      width: var(--name-info-width);
+    }
+    #username {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      font-size: 24px;
+    }
+    .buzzar-code-responsive {
+      font-size: 12px;
+    }
+    #user-tag {
+      font-size: 13px;
+    }
+    .info-responsive {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+    .bio {
+      margin-top: 20px;
+    }
+    .bio img {
+      display: none;
+    }
+    #user-msg {
+      font-size: 15px;
+    }
+    #about {
+      margin-right: unset;
+      font-size: 14px;
+    }
   }
 </style>
