@@ -11,6 +11,8 @@
   // console.log(user);
   import UserData from "../../data";
   import ChatBubble from "../../assets/chat-bubble.png";
+  import CompactProduct from "../../components/CompactProduct.svelte";
+
   let name, username, pfp, bio, tags, buzzarCode, products, collections;
 
   UserData.map((person) => {
@@ -121,7 +123,7 @@
     </div>
     <hr />
     <div class="products-gallery" style="display:{tabOpen ? 'grid' : 'none'}">
-      {#each products as product}
+      <!-- {#each products as product}
         <a href="/{username}/{product.productId}">
           <div class="card">
             <span class="product-name">{product.productName}</span>
@@ -146,6 +148,9 @@
             </div>
           </div>
         </a>
+      {/each} -->
+      {#each products as product}
+        <CompactProduct {product} />
       {/each}
     </div>
 
@@ -178,6 +183,10 @@
   @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
   a {
     text-decoration: none;
+  }
+
+  .non-responsive-mobile {
+    display: block;
   }
   main {
     font-family: "Montserrat", sans-serif;
@@ -274,6 +283,12 @@
   }
   .gallery {
     width: 1150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .gallery hr {
+    width: 100%;
   }
   .tabs {
     margin: 0px 140px;
@@ -281,6 +296,7 @@
     align-items: center;
     width: 220px;
     justify-content: space-between;
+    align-self: flex-start;
   }
   .tabs span {
     padding: 10px;
@@ -297,7 +313,7 @@
     padding: 30px 0;
     grid-template-columns: repeat(4, 1fr);
   }
-  .card {
+  /* .card {
     width: fit-content;
     display: inline-block;
     border: 0.3px solid #c4c4c4;
@@ -331,7 +347,7 @@
     background: antiquewhite;
     border-radius: 10px;
     overflow: hidden;
-  }
+  } */
 
   .collection {
     margin-top: 50px;
@@ -368,9 +384,6 @@
 
   .responsive-mobile {
     display: none;
-  }
-  .non-responsive-mobile {
-    display: block;
   }
   @media screen and (max-width: 480px) {
     .responsive-mobile {
@@ -431,6 +444,19 @@
     #about {
       margin-right: unset;
       font-size: 14px;
+    }
+
+    .gallery {
+      width: 100%;
+      margin-top: 30px;
+    }
+    .tabs {
+      margin: 0 30px;
+    }
+    .products-gallery {
+      grid-gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      padding: 20px 0;
     }
   }
 </style>

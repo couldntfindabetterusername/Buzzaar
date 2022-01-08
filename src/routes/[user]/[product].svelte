@@ -69,15 +69,28 @@
   const moveRight = () => {
     const slider = document.getElementsByClassName("slider")[0];
     if (currentSlide < productImages.length) {
-      slider.style.transform = "translateX(-" + 450 * currentSlide + "px)";
+      if (screenWidth > 480) {
+        slider.style.transform = "translateX(-" + 450 * currentSlide + "px)";
+      } else {
+        slider.style.transform =
+          "translateX(-" + moveSlider * currentSlide + "px)";
+      }
+
       currentSlide++;
     }
   };
   const moveLeft = () => {
     const slider = document.getElementsByClassName("slider")[0];
+
     if (currentSlide > 1) {
-      slider.style.transform =
-        "translateX(-" + 450 * (currentSlide - 2) + "px)";
+      if (screenWidth > 480) {
+        slider.style.transform =
+          "translateX(-" + 450 * (currentSlide - 2) + "px)";
+      } else {
+        slider.style.transform =
+          "translateX(-" + moveSlider * (currentSlide - 2) + "px)";
+      }
+
       currentSlide--;
     }
   };
@@ -94,10 +107,17 @@
 
   let dropdownOpen1 = false,
     dropdownopen2 = false;
+
+  let screenWidth;
+
+  $: moveSlider = screenWidth - 30;
+  $: width = (screenWidth - 30).toString() + "px";
+  $: sliderHeight = (((screenWidth - 30) * 10) / 9).toString() + "px";
 </script>
 
+<svelte:window bind:innerWidth={screenWidth} />
 {#if PersonFound && ProductFound}
-  <main>
+  <main style="--width:{width};--slider-height:{sliderHeight}">
     <div class="top">
       <div class="left">
         <div class="slider-wrapper">
@@ -133,7 +153,7 @@
       </div>
       <div class="right">
         <div class="prod-seller">
-          <div class="seller-info">
+          <div class="seller-info non-responsive-mobile">
             <div
               class="pfp"
               style="background: url({pfp});background-size:cover;background-position:center;"
@@ -148,94 +168,104 @@
               /></a
             >
           </div>
-          <div class="product-name">{productName}</div>
+          <div class="product-name">
+            {productName}
+            <a href="/{username}"
+              ><div
+                class="pfp responsive-mobile"
+                style="background: url({pfp});background-size:cover;background-position:center;"
+              /></a
+            >
+          </div>
           <div class="pricing">
             <span class="amount">₹ {productPrize}</span>
             <span class="discount">({discount}% DISCOUNT)</span>
           </div>
-          {#if productSizes}
-            <div
-              class="product-sizes variant"
-              style="border: {dropdownOpen1
-                ? '1px solid #444444'
-                : '0.8px solid #c4c4c4'};"
-              on:click={() => {
-                dropdownOpen1 = !dropdownOpen1;
-                dropdownopen2 = false;
-              }}
-            >
-              <span class="variant-heading">Sizes</span>
-              <span
-                class="arrow-down"
-                style="background:url({ArrowDown});background-size:cover;background-position:center;{dropdownOpen1
-                  ? 'transform:rotate(180deg)'
-                  : ''}"
-              />
+          <div class="variants-wrapper">
+            {#if productSizes}
               <div
-                class="variant-list"
-                style="display: {dropdownOpen1 ? 'block' : 'none'};"
+                class="product-sizes variant"
+                style="border: {dropdownOpen1
+                  ? '1px solid #444444'
+                  : '0.8px solid #c4c4c4'};"
+                on:click={() => {
+                  dropdownOpen1 = !dropdownOpen1;
+                  dropdownopen2 = false;
+                }}
               >
-                {#each productSizes as productSize}
-                  <option
-                    value={productSize}
-                    on:click={(e) => {
-                      e.path[2].children[0].innerHTML =
-                        productSize.toUpperCase();
+                <span class="variant-heading">Sizes</span>
+                <span
+                  class="arrow-down"
+                  style="background:url({ArrowDown});background-size:cover;background-position:center;{dropdownOpen1
+                    ? 'transform:rotate(180deg)'
+                    : ''}"
+                />
+                <div
+                  class="variant-list"
+                  style="display: {dropdownOpen1 ? 'block' : 'none'};"
+                >
+                  {#each productSizes as productSize}
+                    <option
+                      value={productSize}
+                      on:click={(e) => {
+                        e.path[2].children[0].innerHTML =
+                          productSize.toUpperCase();
 
-                      SizeChosen = true;
-                      SizeChosenValue = e.target.innerHTML;
+                        SizeChosen = true;
+                        SizeChosenValue = e.target.innerHTML;
 
-                      if (ColorChosen && SizeChosen) {
-                        alertMsg = false;
-                      }
-                    }}>{productSize}</option
-                  >
-                {/each}
+                        if (ColorChosen && SizeChosen) {
+                          alertMsg = false;
+                        }
+                      }}>{productSize}</option
+                    >
+                  {/each}
+                </div>
               </div>
-            </div>
-          {/if}
-          {#if productColors}
-            <div
-              class="product-colors variant"
-              style="border: {dropdownopen2
-                ? '1px solid #444444'
-                : '0.8px solid #c4c4c4'};"
-              on:click={() => {
-                dropdownopen2 = !dropdownopen2;
-                dropdownOpen1 = false;
-              }}
-            >
-              <span class="variant-heading">Colors</span>
-              <span
-                class="arrow-down"
-                style="background:url({ArrowDown});background-size:cover;background-position:center;{dropdownopen2
-                  ? 'transform:rotate(180deg)'
-                  : ''}"
-              />
+            {/if}
+            {#if productColors}
               <div
-                class="variant-list"
-                style="display: {dropdownopen2 ? 'block' : 'none'};"
+                class="product-colors variant"
+                style="border: {dropdownopen2
+                  ? '1px solid #444444'
+                  : '0.8px solid #c4c4c4'};"
+                on:click={() => {
+                  dropdownopen2 = !dropdownopen2;
+                  dropdownOpen1 = false;
+                }}
               >
-                {#each productColors as productColor}
-                  <option
-                    class="product-color"
-                    value={productColor}
-                    on:click={(e) => {
-                      e.path[2].children[0].innerHTML =
-                        productColor.toUpperCase();
+                <span class="variant-heading">Colors</span>
+                <span
+                  class="arrow-down"
+                  style="background:url({ArrowDown});background-size:cover;background-position:center;{dropdownopen2
+                    ? 'transform:rotate(180deg)'
+                    : ''}"
+                />
+                <div
+                  class="variant-list"
+                  style="display: {dropdownopen2 ? 'block' : 'none'};"
+                >
+                  {#each productColors as productColor}
+                    <option
+                      class="product-color"
+                      value={productColor}
+                      on:click={(e) => {
+                        e.path[2].children[0].innerHTML =
+                          productColor.toUpperCase();
 
-                      ColorChosen = true;
-                      ColorChosenValue = e.target.innerHTML;
+                        ColorChosen = true;
+                        ColorChosenValue = e.target.innerHTML;
 
-                      if (ColorChosen && SizeChosen) {
-                        alertMsg = false;
-                      }
-                    }}>{productColor}</option
-                  >
-                {/each}
+                        if (ColorChosen && SizeChosen) {
+                          alertMsg = false;
+                        }
+                      }}>{productColor}</option
+                    >
+                  {/each}
+                </div>
               </div>
-            </div>
-          {/if}
+            {/if}
+          </div>
         </div>
         {#if sellerMessage}
           <div class="seller-msg">
@@ -334,6 +364,10 @@
   a {
     text-decoration: none;
   }
+
+  .non-responsive-mobile {
+    display: block;
+  }
   main {
     width: 1000px;
     padding-top: 60px;
@@ -384,7 +418,7 @@
   .product-image {
     height: 100%;
 
-    width: 450px;
+    min-width: 450px;
   }
   .left-arrow,
   .right-arrow {
@@ -471,7 +505,6 @@
     margin: 10px 0;
   }
   .pricing {
-    margin: 5px 0 30px 0;
     color: #444;
     font-size: 22px;
     font-weight: 600;
@@ -484,6 +517,11 @@
     font-size: 17px;
   }
 
+  .variants-wrapper {
+    display: grid;
+    grid-gap: 30px;
+    margin: 40px 0;
+  }
   .variant {
     position: relative;
     border-radius: 10px;
@@ -524,9 +562,6 @@
   }
   .variant-list option:hover {
     background-color: #e3e3e3;
-  }
-  .product-colors {
-    margin: 35px 0;
   }
   .product-color {
     text-transform: capitalize;
@@ -675,5 +710,151 @@
     width: 160px;
     height: 240px;
     border-radius: 10px;
+  }
+  .responsive-mobile {
+    display: none;
+  }
+  @media screen and (max-width: 480px) {
+    .responsive-mobile {
+      display: block;
+    }
+    main {
+      padding: 15px;
+      width: var(--width);
+    }
+    .top {
+      flex-direction: column;
+    }
+    .left,
+    .right {
+      width: 100%;
+    }
+
+    .slider-wrapper,
+    .slider {
+      height: var(--slider-height);
+    }
+    .slider-wrapper,
+    .product-image {
+      min-width: var(--width);
+    }
+    .navigation-dots {
+      grid-gap: 15px;
+    }
+    .single-dot {
+      width: 15px;
+      height: 15px;
+      box-shadow: 0 0 6px #444444cc;
+    }
+    .active-dot {
+      width: 10px;
+      height: 10px;
+    }
+    .product-name {
+      font-size: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .amount {
+      font-size: 20px;
+    }
+    .discount {
+      font-size: 15px;
+    }
+    .pfp {
+      width: 35px;
+      height: 35px;
+    }
+    .variants-wrapper {
+      grid-template-columns: 1fr 1fr;
+      margin: 25px 0 20px;
+    }
+    .variant-heading {
+      font-size: 18px;
+    }
+    .arrow-down {
+      width: 18px;
+    }
+    .variant-list option {
+      font-size: 16px;
+    }
+    #seller-name {
+      font-size: 15px;
+    }
+    #msg {
+      font-size: 17px;
+    }
+    .final-pricing {
+      font-size: 15px;
+    }
+    .final-pricing span {
+      padding: 10px;
+    }
+    .arrow {
+      width: 18px;
+    }
+    .buzzar-review {
+      flex-direction: column;
+    }
+    #buzzar-review-icon {
+      font-size: 45px;
+      padding: 25px;
+      text-align: center;
+    }
+    .buzzar-review-msg {
+      border-radius: 0 0 10px 10px;
+      border: 0.5px solid #c4c4c4;
+      border-top: unset;
+      padding: 20px;
+      width: unset;
+    }
+    .question {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .review {
+      font-size: 16px;
+    }
+    .product-info-heading {
+      font-size: 21px;
+      padding: 15px 20px;
+    }
+    .details {
+      flex-direction: column;
+      padding: 0 20px;
+      margin: unset;
+    }
+    .details > div {
+      margin-top: 15px;
+    }
+    .info-heading {
+      font-size: 20px;
+    }
+    .info {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    .review-this-product .info-heading {
+      padding: 15px 20px;
+      margin: unset;
+    }
+    .review-product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 32px;
+      margin: 20px 0;
+      width: var(--width);
+      overflow: hidden;
+      justify-content: unset;
+    }
+    .product-for-review {
+      width: 100px;
+      height: 150px;
+    }
+
+    .non-responsive-mobile {
+      display: none;
+    }
   }
 </style>
