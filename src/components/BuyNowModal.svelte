@@ -47,7 +47,13 @@
     const slider = document.getElementsByClassName("slider")[1];
     console.log(slider);
     if (currentSlide < Product.productImages.length) {
-      slider.style.transform = "translateX(-" + 405 * currentSlide + "px)";
+      if (screenWidth > 480) {
+        slider.style.transform = "translateX(-" + 405 * currentSlide + "px)";
+      } else {
+        slider.style.transform =
+          "translateX(-" + moveSlider * currentSlide + "px)";
+      }
+
       currentSlide++;
     }
   };
@@ -55,8 +61,14 @@
     const slider = document.getElementsByClassName("slider")[1];
     console.log(slider);
     if (currentSlide > 1) {
-      slider.style.transform =
-        "translateX(-" + 405 * (currentSlide - 2) + "px)";
+      if (screenWidth > 480) {
+        slider.style.transform =
+          "translateX(-" + 405 * (currentSlide - 2) + "px)";
+      } else {
+        slider.style.transform =
+          "translateX(-" + moveSlider * (currentSlide - 2) + "px)";
+      }
+
       currentSlide--;
     }
   };
@@ -70,9 +82,21 @@
       navDots.children[currentSlide - 1].classList.add("active-dot");
     }
   }
+
+  let screenWidth, stdCodeInputWidth;
+
+  $: moveSlider = screenWidth - 80;
+  $: inputWidth = (screenWidth - 90).toString() + "px";
+  $: phoneInputWidth = (screenWidth - 90 - stdCodeInputWidth).toString() + "px";
+  $: productReviewWidth = (screenWidth - 80).toString() + "px";
+  $: sliderHeight = (((screenWidth - 80) * 10) / 9).toString() + "px";
+  $: deliveryAddressBoxWidth = (screenWidth - 140).toString() + "px";
 </script>
 
-<main>
+<svelte:window bind:innerWidth={screenWidth} />
+<main
+  style="--input-width:{inputWidth};--phone-input-width:{phoneInputWidth};--product-review-width:{productReviewWidth};--slider-height:{sliderHeight};--delivery-address-box-width:{deliveryAddressBoxWidth}"
+>
   <div class="modal-container">
     <div class="modal">
       <div class="slide">
@@ -85,11 +109,14 @@
               form.reset();
             }}
           />
-          <span class="heading">create your profile card</span>
+          <span class="heading non-responsive-mobile"
+            >create your profile card</span
+          >
           <span class="page">1 / 3</span>
         </div>
+        <span class="heading responsive-mobile">create your profile card</span>
         <form class="form" on:submit|preventDefault bind:this={form}>
-          <div class="flex">
+          <div class="flex flex-column-responsive">
             <div class="flex flex-column input-label">
               <label for="name">name</label>
               <input
@@ -113,7 +140,13 @@
             <div class="flex flex-column input-label">
               <label for="phone1">contact no.</label>
               <div>
-                <input type="text" class="phone-code" bind:value={std1} />
+                <div
+                  bind:clientWidth={stdCodeInputWidth}
+                  style="display: inline-block;"
+                >
+                  <input type="text" class="phone-code" bind:value={std1} />
+                </div>
+
                 <input
                   type="tel"
                   name="phone1"
@@ -141,7 +174,7 @@
                   required
                 />
               </div>
-              <div class="flex">
+              <div class="flex flex-column-responsive">
                 <div class="flex flex-column input-label">
                   <label for="landmark">landmark</label>
                   <input
@@ -181,9 +214,12 @@
         <div class="heading-wrapper">
           <img src={Arrow} alt="" class="back-arrow" />
 
-          <span class="heading">confirm your product card</span>
+          <span class="heading non-responsive-mobile"
+            >confirm your product card</span
+          >
           <span class="page">2 / 3</span>
         </div>
+        <span class="heading responsive-mobile">confirm your product card</span>
         <div class="product-review-wrapper">
           <div class="slider-wrapper">
             <div
@@ -226,14 +262,18 @@
               {#if SizeChosenValue != "" || ColorChosenValue != ""}
                 <div class="specs">
                   {#if SizeChosenValue}
-                    <span class="key">SIZE: </span><span class="value"
-                      >{SizeChosenValue}</span
-                    >
+                    <div>
+                      <span class="key">SIZE: </span><span class="value"
+                        >{SizeChosenValue}</span
+                      >
+                    </div>
                   {/if}
                   {#if ColorChosenValue}
-                    <span class="key">COLOR: </span><span class="value"
-                      >{ColorChosenValue}</span
-                    >
+                    <div>
+                      <span class="key">COLOR: </span><span class="value"
+                        >{ColorChosenValue}</span
+                      >
+                    </div>
                   {/if}
                 </div>
               {/if}
@@ -272,6 +312,10 @@
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+  .non-responsive-mobile {
+    display: block;
+  }
 
   main {
     background: rgba(0, 0, 0, 0.7);
@@ -528,5 +572,136 @@
   .checkout {
     color: #ffffff;
     background: #99319b;
+  }
+
+  .responsive-mobile {
+    display: none;
+  }
+  @media screen and (max-width: 480px) {
+    .responsive-mobile {
+      display: block;
+    }
+
+    main {
+      width: 100%;
+      left: 0;
+      display: unset;
+      height: unset;
+      position: absolute;
+    }
+    .modal-container {
+      width: 100%;
+      border-radius: unset;
+    }
+    .modal {
+      align-items: unset;
+    }
+
+    .slide {
+      border-radius: unset;
+    }
+    .heading {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 18px;
+    }
+    .form {
+      padding: 30px;
+    }
+    .flex-column-responsive {
+      flex-direction: column;
+    }
+    .input-label {
+      margin-bottom: 30px;
+    }
+    .input-label > div {
+      display: flex;
+    }
+    #name,
+    #email,
+    #landmark {
+      width: var(--input-width);
+    }
+    #phone1,
+    #phone2 {
+      width: var(--phone-input-width);
+    }
+    .input-heading {
+      margin: 15px 0 30px;
+    }
+    .address-info {
+      width: 100%;
+    }
+    .product-review-wrapper {
+      width: 100%;
+      flex-direction: column;
+      padding: 40px;
+    }
+    .slider-wrapper {
+      width: var(--product-review-width);
+      height: var(--slider-height);
+    }
+    .slider {
+      height: var(--slider-height);
+    }
+    .product-image {
+      width: var(--product-review-width);
+    }
+    .navigation-dots {
+      grid-gap: 15px;
+    }
+    .single-dot {
+      width: 15px;
+      height: 15px;
+      box-shadow: 0 0 6px #444444cc;
+    }
+    .active-dot {
+      width: 10px;
+      height: 10px;
+    }
+    .product-info {
+      margin: unset;
+      margin-top: 15px;
+      width: var(--product-review-width);
+    }
+    .product-info-container {
+      margin-bottom: 45px;
+    }
+    .product-heading {
+      font-size: 23px;
+    }
+    .amount {
+      font-size: 21px;
+    }
+    .specs {
+      font-size: 17px;
+      display: flex;
+      justify-content: space-between;
+      width: var(--product-review-width);
+    }
+    .value {
+      margin: unset;
+    }
+    .address-wrapper {
+      padding: 15px 30px;
+      width: var(--delivery-address-box-width);
+      margin-top: 20px;
+    }
+    .checkout-section {
+      padding: 15px 0;
+      font-size: 17px;
+    }
+    .checkout-section span {
+      padding: 15px;
+    }
+    .address-heading,
+    .reciever-name,
+    .address {
+      font-size: 17px;
+    }
+
+    .non-responsive-mobile {
+      display: none;
+    }
   }
 </style>
