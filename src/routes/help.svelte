@@ -42,4 +42,23 @@
     margin-bottom: 15px;
     font-weight: 600;
   }
+
+  @media screen and (max-width: 480px) {
+    main {
+      width: 100%;
+      margin: 30px 25px;
+      grid-gap: 30px;
+      font-size: 18px;
+    }
+  }
+  .heading {
+    font-size: 23px;
+  }
+  .section {
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+  .heading-2 {
+    margin-bottom: 10px;
+  }
 </style>
