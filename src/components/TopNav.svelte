@@ -3,7 +3,7 @@
   let menuOpen = false,
     menuBtn,
     menuWrapper,
-    loggedIn = false,
+    loggedIn = true,
     isBuyer = false;
 
   const menuHandler = () => {
@@ -83,12 +83,18 @@
         <div class="nav-items-hamburger">
           {#if loggedIn}
             <span class="hamburger-username">hello, (user)</span>
-            <a href="/user" class="mobile-view">My Profile</a>
-            <a href="/orders" class="mobile-view">Orders</a>
-            <a href="/contact">Contact</a>
-            <a href="/faq">FAQ</a>
-            <a href="/help">Help</a>
-            <a href="#" class="mobile-view">Sign Out</a>
+            <a href="/user" class="mobile-view" on:click={() => menuHandler()}
+              >My Profile</a
+            >
+            <a href="/orders" class="mobile-view" on:click={() => menuHandler()}
+              >Orders</a
+            >
+            <a href="/contact" on:click={() => menuHandler()}>Contact</a>
+            <a href="/faq" on:click={() => menuHandler()}>FAQ</a>
+            <a href="/help" on:click={() => menuHandler()}>Help</a>
+            <a href="#" class="mobile-view" on:click={() => menuHandler()}
+              >Sign Out</a
+            >
 
             {#if isBuyer}
               <a href="/seller" class="become-seller-btn">Become a seller</a>
