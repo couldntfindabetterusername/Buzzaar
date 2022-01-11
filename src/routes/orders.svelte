@@ -169,13 +169,14 @@
       grid-gap: 15px;
       justify-content: unset;
     }
-  }
-  .footer-heading {
-    margin-bottom: 10px;
-  }
-  footer .flex {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+    .footer-heading {
+      margin-bottom: 10px;
+    }
+    footer .flex {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 16px;
+    }
   }
 </style>
