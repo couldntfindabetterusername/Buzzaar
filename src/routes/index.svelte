@@ -15,6 +15,7 @@
     padding: 10px 0;
     border: 0.5px solid rgba(196, 196, 196, 0.85);
     border-radius: 15px;
+    background: rgb(251 251 251 / 80%);
   }
   @media screen and (max-width: 480px) {
     main {

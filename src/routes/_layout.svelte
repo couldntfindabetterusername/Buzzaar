@@ -31,6 +31,8 @@
         : "--div-margin-top:130px;--div-margin-left:50px"}
     >
       <slot />
+
+      <div class="extra" />
       <div
         class="side-panel"
         style="--display: {segment === undefined ||
@@ -96,10 +98,15 @@
     }
     .div {
       margin-left: 0;
-      margin-top: 110px;
+      margin-top: 90px;
+      flex-direction: column;
     }
     .side-panel {
       display: none;
+    }
+    .extra {
+      width: 100%;
+      height: 80px;
     }
   }
 </style>

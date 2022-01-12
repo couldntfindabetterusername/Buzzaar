@@ -35,22 +35,23 @@
     }
   };
 
-  let screenHeight;
+  let screenHeight, screenWidth;
 
+  $: width = (screenWidth - 80).toString() + "px";
   $: height = (screenHeight + 0).toString() + "px";
   $: hamburgerWrapperHeight = (screenHeight - 130).toString() + "px";
   export let segment;
 </script>
 
-<svelte:window bind:innerHeight={screenHeight} />
+<svelte:window bind:innerHeight={screenHeight} bind:innerWidth={screenWidth} />
 <nav
-  style={segment === undefined ||
-  segment === "search" ||
-  segment === "add" ||
-  segment === "wishlist" ||
-  segment === "user"
-    ? "--left:100px;border-bottom:unset;--responsive-left:60px;--responsive-left-mobile:0"
-    : ""}
+  style="--width:{width};{segment === undefined ||
+  segment === 'search' ||
+  segment === 'add' ||
+  segment === 'wishlist' ||
+  segment === 'user'
+    ? '--left:100px;border-bottom:unset;--responsive-left:60px;--responsive-left-mobile:0'
+    : ''}"
 >
   <a href="/" class="logo">Buzzaar</a>
   <div class="menu-btn" bind:this={menuBtn} on:click={() => menuHandler()}>
@@ -208,6 +209,7 @@
   @media screen and (max-width: 768px) {
     nav {
       left: var(--responsive-left);
+      width: var(--width);
     }
     .menu-btn {
       display: flex;
@@ -313,9 +315,9 @@
   @media screen and (max-width: 480px) {
     nav {
       left: var(--responsive-left-mobile);
-      width: 80%;
       justify-content: space-between;
-      padding: 18px 10%;
+      padding: 0 40px;
+      height: 90px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     .logo {
