@@ -17,8 +17,16 @@
     border-radius: 15px;
     background: rgb(251 251 251 / 80%);
   }
+
+  @media screen and (max-width: 768px) {
+    main {
+      margin: 0 30px;
+    }
+  }
+
   @media screen and (max-width: 480px) {
     main {
+      margin: unset;
       padding: unset;
       border: unset;
     }

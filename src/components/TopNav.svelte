@@ -37,6 +37,7 @@
 
   let screenHeight, screenWidth;
 
+  $: tabWidth = (screenWidth - 180).toString() + "px";
   $: width = (screenWidth - 80).toString() + "px";
   $: height = (screenHeight + 0).toString() + "px";
   $: hamburgerWrapperHeight = (screenHeight - 130).toString() + "px";
@@ -45,7 +46,7 @@
 
 <svelte:window bind:innerHeight={screenHeight} bind:innerWidth={screenWidth} />
 <nav
-  style="--width:{width};{segment === undefined ||
+  style="--width:{width};--tab-width:{tabWidth};{segment === undefined ||
   segment === 'search' ||
   segment === 'add' ||
   segment === 'wishlist' ||
@@ -209,7 +210,10 @@
   @media screen and (max-width: 768px) {
     nav {
       left: var(--responsive-left);
-      width: var(--width);
+      width: var(--tab-width);
+      z-index: 1;
+      padding: 30px 60px;
+      justify-content: space-between;
     }
     .menu-btn {
       display: flex;
@@ -319,6 +323,8 @@
       padding: 0 40px;
       height: 90px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: unset;
+      width: var(--width);
     }
     .logo {
       font-size: 40px;
