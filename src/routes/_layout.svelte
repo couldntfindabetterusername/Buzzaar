@@ -3,10 +3,15 @@
   import TopNav from "../components/TopNav.svelte";
   import UserLoginInfo from "../components/UserLoginInfo.svelte";
   export let segment;
+
+  let screenWidth;
+  $: width = screenWidth;
 </script>
 
+<svelte:window bind:innerWidth={screenWidth} />
 <main>
-  <LeftNav {segment} />
+  {#if screenWidth > 480}
+    <LeftNav {segment} />{/if}
 
   <article
     style="--margin-left:{segment === undefined ||
