@@ -1,5 +1,8 @@
 <script>
   import UserLogin from "./UserLoginInfo.svelte";
+  import ChatIconDark from "../assets/chat icon dark.png";
+  import LeftNav from "./LeftNav.svelte";
+
   let menuOpen = false,
     menuBtn,
     menuWrapper,
@@ -45,6 +48,9 @@
 </script>
 
 <svelte:window bind:innerHeight={screenHeight} bind:innerWidth={screenWidth} />
+
+{#if screenWidth <= 480}
+  <LeftNav style={`${!menuOpen ? "" : "z-index:0;"}`} />{/if}
 <nav
   style="--width:{width};--tab-width:{tabWidth};{segment === undefined ||
   segment === 'search' ||
@@ -55,11 +61,18 @@
     : ''}"
 >
   <a href="/" class="logo">Buzzaar</a>
-  <div class="menu-btn" bind:this={menuBtn} on:click={() => menuHandler()}>
-    <div class="menu-btn-burger" />
-    <div class="menu-btn-burger" />
-    <div class="menu-btn-burger" />
-  </div>
+
+  <aside>
+    <div
+      class="chat-icon"
+      style="background-image: url({ChatIconDark});background-position:center;background-size:cover;"
+    />
+    <div class="menu-btn" bind:this={menuBtn} on:click={() => menuHandler()}>
+      <div class="menu-btn-burger" />
+      <div class="menu-btn-burger" />
+      <div class="menu-btn-burger" />
+    </div>
+  </aside>
 
   <!--for desktop-->
   <div class="nav-items">
@@ -122,6 +135,7 @@
   a {
     text-decoration: none;
   }
+
   nav {
     display: flex;
     width: 100%;
@@ -162,6 +176,14 @@
     display: none;
   }
 
+  aside {
+    display: none;
+  }
+  aside .chat-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 20px;
+  }
   .menu-btn {
     position: relative;
     cursor: pointer;
@@ -214,6 +236,10 @@
       z-index: 1;
       padding: 30px 60px;
       justify-content: space-between;
+    }
+
+    aside {
+      display: flex;
     }
     .menu-btn {
       display: flex;

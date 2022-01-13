@@ -10,6 +10,7 @@
   import User from "../assets/user.png";
   import UserAlt from "../assets/user solid fill.png";
   export let segment;
+  export let style;
 
   let username = "randombuyer";
 </script>
@@ -35,7 +36,7 @@
   segment === 'wishlist' ||
   segment === 'user'
     ? '240px'
-    : '80px'};
+    : '80px'};{style}
     "
 >
   <div
@@ -226,6 +227,7 @@
     box-shadow: var(--box-shadow);
     position: fixed;
     z-index: 4;
+    transition: all 0.5s ease-in-out;
   }
   .nav-icons {
     height: var(--nav-icons-height);
@@ -287,7 +289,7 @@
     nav {
       width: 60px;
       box-shadow: 2px 0 10px rgb(68 68 68 / 15%);
-      z-index: 2;
+      z-index: 1;
     }
 
     .nav-icons {
