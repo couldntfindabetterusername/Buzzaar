@@ -89,6 +89,15 @@
     }
   }
 
+  @media screen and (max-width: 768px) {
+    .side-panel {
+      display: none;
+    }
+    .div {
+      margin-left: 0;
+    }
+  }
+
   @media screen and (max-width: 480px) {
     main {
       flex-direction: column-reverse;
@@ -97,13 +106,10 @@
       margin-left: 0px;
     }
     .div {
-      margin-left: 0;
       margin-top: 90px;
       flex-direction: column;
     }
-    .side-panel {
-      display: none;
-    }
+
     .extra {
       width: 100%;
       height: 80px;
