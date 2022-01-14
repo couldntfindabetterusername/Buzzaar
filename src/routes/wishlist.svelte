@@ -30,6 +30,17 @@
     font-family: "Montserrat", sans-serif;
   }
 
+  @media screen and (max-width: 768px) {
+    main {
+      padding: unset;
+      border-radius: unset;
+      border: unset;
+      border-top: 0.5px solid rgba(196, 196, 196, 0.85);
+    }
+    .heading {
+      font-size: 24px;
+    }
+  }
   @media screen and (max-width: 480px) {
     main {
       padding: unset;

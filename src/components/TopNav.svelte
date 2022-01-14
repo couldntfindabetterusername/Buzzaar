@@ -20,7 +20,12 @@
       }
       // hamburgerBG.style.opacity = "1";
       // hamburgerBG.style.display = "block";
-      menuWrapper.style.transform = "translateX(0)";
+
+      if (screenWidth > 480 && screenWidth <= 768) {
+        menuWrapper.style.transform = "translateX(-70px)";
+      } else {
+        menuWrapper.style.transform = "translateX(0)";
+      }
       menuWrapper.style.background = "rgba(0,0,0,0.5)";
       menuOpen = true;
     } else {
@@ -179,11 +184,7 @@
   aside {
     display: none;
   }
-  aside .chat-icon {
-    width: 32px;
-    height: 32px;
-    margin-right: 20px;
-  }
+
   .menu-btn {
     position: relative;
     cursor: pointer;
@@ -195,7 +196,7 @@
     z-index: 2;
   }
   .menu-btn-burger {
-    width: 30px;
+    width: 35px;
     height: 4px;
     border-radius: 3px;
     background-color: #444;
@@ -207,10 +208,10 @@
     position: absolute;
   }
   .menu-btn-burger:first-child {
-    transform: translateY(-10px);
+    transform: translateY(-11.5px);
   }
   .menu-btn-burger:last-child {
-    transform: translateY(10px);
+    transform: translateY(11.5px);
   }
 
   .hamburger-wrapper {
@@ -236,10 +237,19 @@
       z-index: 1;
       padding: 30px 60px;
       justify-content: space-between;
+      margin-left: 10px;
     }
 
+    .logo {
+      font-size: 48px;
+    }
     aside {
       display: flex;
+    }
+    aside .chat-icon {
+      width: 35px;
+      height: 35px;
+      margin-right: 20px;
     }
     .menu-btn {
       display: flex;
@@ -276,7 +286,7 @@
       position: absolute;
       background: #99319b;
       font-family: "Montserrat", sans-serif;
-      font-size: 20px;
+      font-size: 25px;
       font-weight: 500;
       width: 70%;
       right: 0;
@@ -297,7 +307,8 @@
 
     .nav-items-hamburger a {
       color: #ffffff;
-      margin-bottom: 18px;
+      font-size: 23px;
+      margin-bottom: 25px;
     }
     .nav-items-hamburger a.become-seller-btn {
       background: #fff;
@@ -310,7 +321,7 @@
       text-transform: uppercase;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
 
     .hamburger-bottom {
@@ -322,20 +333,21 @@
     .hamburger-bottom hr {
       width: 100%;
       background: #ffffff;
+      margin-bottom: 10px;
     }
     .hamburger-buzzaar {
       font-family: "DM Serif Display";
       font-style: italic;
-      font-size: 37px;
+      font-size: 48px;
     }
     .hamburger-marketplace {
       text-transform: uppercase;
-      font-size: 15px;
+      font-size: 20px;
       letter-spacing: 2px;
     }
     .hamburger-instagram-wrapper {
       margin-top: 30px;
-      font-size: 15px;
+      font-size: 20px;
     }
 
     .mobile-view {
@@ -351,9 +363,43 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       z-index: unset;
       width: var(--width);
+      margin-left: unset;
     }
     .logo {
       font-size: 40px;
+    }
+
+    aside .chat-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .menu-btn-burger {
+      width: 30px;
+    }
+    .menu-btn-burger:first-child {
+      transform: translateY(-10px);
+    }
+    .menu-btn-burger:last-child {
+      transform: translateY(10px);
+    }
+
+    .nav-items-wrapper {
+      font-size: 20px;
+    }
+    .hamburger-username {
+      margin-bottom: 40px;
+    }
+    .nav-items-hamburger a {
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+    .hamburger-buzzaar {
+      font-size: 37px;
+    }
+    .hamburger-marketplace,
+    .hamburger-instagram-wrapper {
+      font-size: 15px;
     }
   }
 </style>

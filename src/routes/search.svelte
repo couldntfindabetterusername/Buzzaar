@@ -52,9 +52,19 @@
     width: 100%;
   }
 
+  @media screen and (max-width: 768px) {
+    main {
+      border-radius: unset;
+      padding: unset;
+      border: unset;
+      border-top: 0.5px solid rgba(196, 196, 196, 0.85);
+    }
+    .search-bar {
+      width: 75%;
+    }
+  }
   @media screen and (max-width: 480px) {
     main {
-      padding: unset;
       border: unset;
       margin: 0 25px;
     }

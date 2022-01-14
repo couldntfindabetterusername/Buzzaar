@@ -20,7 +20,8 @@
 
   @media screen and (max-width: 768px) {
     main {
-      margin: 0 30px;
+      padding-top: 60px;
+      margin: 0 50px;
     }
   }
 
