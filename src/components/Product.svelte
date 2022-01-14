@@ -167,6 +167,12 @@
     width: 22px;
   }
 
+  @media screen and (max-width: 768px) {
+    .container {
+      transform: scale(0.8);
+      margin: -80px auto;
+    }
+  }
   @media screen and (max-width: 480px) {
     .container {
       margin: 15px auto 0 auto;
