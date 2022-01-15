@@ -22,7 +22,7 @@
       // hamburgerBG.style.display = "block";
 
       if (screenWidth > 480 && screenWidth <= 768) {
-        menuWrapper.style.transform = "translateX(-70px)";
+        menuWrapper.style.transform = "translateX(-60px)";
       } else {
         menuWrapper.style.transform = "translateX(0)";
       }
@@ -237,7 +237,6 @@
       z-index: 1;
       padding: 30px 60px;
       justify-content: space-between;
-      margin-left: 10px;
     }
 
     .logo {
