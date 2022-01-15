@@ -118,17 +118,17 @@
       font-size: 16px;
       padding: 0 10px;
     }
-  }
-  .images {
-    grid-template-rows: unset;
-  }
-  .img {
-    width: 45px;
-    height: 45px;
-  }
-  #img-1 {
-    width: 100px;
-    height: 100px;
+    .images {
+      grid-template-rows: unset;
+    }
+    .img {
+      width: 45px;
+      height: 45px;
+    }
+    #img-1 {
+      width: 100px;
+      height: 100px;
+    }
   }
 
   @media screen and (max-width: 480px) {

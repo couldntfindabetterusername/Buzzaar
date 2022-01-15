@@ -1,7 +1,7 @@
 <main>
   <div class="heading">Help</div>
   <div class="content">
-    <div class="heading-2">Please Submit your Query here</div>
+    <div class="heading-1 heading-2">Please Submit your Query here</div>
     <div class="section">
       <div class="heading-2">Whatsapp at</div>
       <span class="content-2">+91-9797997554</span>
@@ -40,9 +40,33 @@
 
   .heading-2 {
     margin-bottom: 15px;
+    font-weight: 500;
+  }
+  .heading-1 {
     font-weight: 600;
   }
 
+  @media screen and (max-width: 1200px) {
+    main {
+      width: 70%;
+      margin: 60px auto;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    main {
+      width: 80%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    main {
+      font-size: 18px;
+    }
+    .heading {
+      font-size: 23px;
+    }
+  }
   @media screen and (max-width: 480px) {
     main {
       width: 100%;
@@ -50,15 +74,15 @@
       grid-gap: 30px;
       font-size: 18px;
     }
-  }
-  .heading {
-    font-size: 23px;
-  }
-  .section {
-    flex-direction: column;
-    margin-bottom: 30px;
-  }
-  .heading-2 {
-    margin-bottom: 10px;
+    .heading {
+      font-size: 23px;
+    }
+    .section {
+      flex-direction: column;
+      margin-bottom: 30px;
+    }
+    .heading-2 {
+      margin-bottom: 10px;
+    }
   }
 </style>
