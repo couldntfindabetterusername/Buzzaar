@@ -9,12 +9,14 @@
   let src = ShowPassword;
   let modalContainer;
 
-  let screenHeight;
+  let screenHeight, screenWidth;
+  $: width = screenWidth;
   $: height = (screenHeight + 0).toString() + "px";
 </script>
 
 <svelte:window
   bind:innerHeight={screenHeight}
+  bind:innerWidth={screenWidth}
   on:click={(e) => {
     if (e.target == modalContainer) {
       modalContainer.style.transform = "translateY(100vh)";
@@ -44,8 +46,12 @@
           signup = true;
           login = false;
           modalContainer.style.transform = "translateY(-100px)";
-        }}>Sign up for free</span
-      >
+        }}
+        >Sign up
+        {#if width > 1400 || width <= 480}
+          for free
+        {/if}
+      </span>
       <span class="or">or</span>
       <span
         class="login"
@@ -363,6 +369,50 @@
     top: 58%;
   }
 
+  @media screen and (max-width: 1400px) {
+    main {
+      width: 200px;
+    }
+    .container {
+      margin: 30px;
+      font-size: 20px;
+    }
+    .signup,
+    .login,
+    .or {
+      font-size: 18px;
+    }
+    .signup {
+      margin-top: 20px;
+      padding: 8px 15px;
+    }
+    .or {
+      margin: 10px 0;
+    }
+
+    .container-login,
+    .p,
+    .buzzaar,
+    .shop,
+    .seller {
+      font-size: 16px;
+    }
+    .container-login {
+      margin: 30px 20px;
+    }
+    .container-login:last-child {
+      margin-top: unset;
+    }
+    .p:nth-child(2) {
+      margin-top: 15px;
+    }
+    .buzzaar {
+      margin-bottom: 15px;
+    }
+    .shop {
+      padding: 8px 12px;
+    }
+  }
   @media screen and (max-width: 768px) {
     main {
       background: unset;

@@ -30,12 +30,12 @@
   segment === 'user'
     ? 'unset'
     : '2px 0 10px rgb(68 68 68 / 15%)'};
-    --width-at-1000:{segment === undefined ||
+    --width-at-1400:{segment === undefined ||
   segment === 'search' ||
   segment === 'add' ||
   segment === 'wishlist' ||
   segment === 'user'
-    ? '240px'
+    ? '220px'
     : '80px'};{style}
     "
 >
@@ -273,9 +273,9 @@
     color: #99319b;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1400px) {
     nav {
-      width: var(--width-at-1000);
+      width: var(--width-at-1400);
     }
     .bar {
       margin-right: 30px;
