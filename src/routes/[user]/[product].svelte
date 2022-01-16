@@ -427,7 +427,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 2;
+    z-index: 1;
     border-radius: 50%;
     width: 40px;
     height: 40px;

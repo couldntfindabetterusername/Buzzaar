@@ -18,7 +18,9 @@
 
   let screenWidth;
   $: activeHeight =
-    ((screenWidth - 0.05 * screenWidth - 45) * 0.75).toString() + "px";
+    screenWidth > 480
+      ? "300px"
+      : ((screenWidth - 0.05 * screenWidth - 45) * 0.75).toString() + "px";
 
   export let product;
 </script>
@@ -167,10 +169,19 @@
     width: 22px;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1500px) {
     .container {
-      transform: scale(0.8);
-      margin: -80px auto;
+      transform: unset;
+      margin: 40px auto;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .image-grid {
+      width: 100%;
+      height: unset;
+    }
+    .active {
+      height: var(--active-height);
     }
   }
   @media screen and (max-width: 480px) {

@@ -20,12 +20,12 @@
     segment === 'wishlist' ||
     segment === 'user'
       ? '300px'
-      : '100px'};--margin-left-at-1000:{segment === undefined ||
+      : '100px'};--margin-left-at-1400:{segment === undefined ||
     segment === 'search' ||
     segment === 'add' ||
     segment === 'wishlist' ||
     segment === 'user'
-      ? '240px'
+      ? '220px'
       : '80px'};"
   >
     <TopNav {segment} />
@@ -82,9 +82,9 @@
     display: var(--display);
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1400px) {
     article {
-      margin-left: var(--margin-left-at-1000);
+      margin-left: var(--margin-left-at-1400);
     }
   }
 
