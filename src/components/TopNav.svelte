@@ -245,9 +245,11 @@
     }
   }
 
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 900px) {
     nav {
       width: var(--width);
+      left: var(--responsive-left);
+      z-index: 1;
     }
     .logo {
       margin-left: 40px;
@@ -260,9 +262,7 @@
 
   @media screen and (max-width: 768px) {
     nav {
-      left: var(--responsive-left);
       width: var(--tab-width);
-      z-index: 1;
       padding: 30px 60px;
       justify-content: space-between;
     }
