@@ -20,16 +20,26 @@
 
   @media screen and (max-width: 768px) {
     main {
-      padding-top: 60px;
       margin: 0 50px;
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 700px) {
+    main {
+      margin: 0 20px;
+    }
+  }
+  @media screen and (max-width: 500px) {
     main {
       margin: unset;
-      padding: unset;
+      border-radius: unset;
       border: unset;
+      border-top: 0.5px solid rgba(196, 196, 196, 0.85);
+    }
+  }
+  @media screen and (max-width: 480px) {
+    main {
+      padding: unset;
     }
   }
 </style>

@@ -285,7 +285,7 @@
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 900px) {
     nav {
       width: 60px;
       box-shadow: 2px 0 10px rgb(68 68 68 / 15%);

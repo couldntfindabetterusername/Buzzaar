@@ -18,9 +18,13 @@
 
   let screenWidth;
   $: activeHeight =
-    screenWidth > 480
-      ? "300px"
-      : ((screenWidth - 0.05 * screenWidth - 45) * 0.75).toString() + "px";
+    screenWidth <= 480
+      ? (screenWidth * 0.9 * 0.75 + 15).toString() + "px"
+      : screenWidth <= 700
+      ? "250px"
+      : screenWidth <= 768
+      ? (screenWidth - 450).toString() + "px"
+      : (screenWidth / 4).toString() + "px";
 
   export let product;
 </script>
@@ -176,12 +180,47 @@
     }
   }
   @media screen and (max-width: 1200px) {
+    .container {
+      padding: 20px;
+    }
+    .top {
+      padding: unset;
+    }
+    .name-info {
+      font-size: 22px;
+    }
+    .collection-name {
+      font-size: 13px;
+    }
+    .icon {
+      width: 35px;
+      height: 35px;
+      margin-left: 10px;
+    }
     .image-grid {
       width: 100%;
       height: unset;
+      grid-gap: 15px;
+      margin: 15px 0;
     }
     .active {
       height: var(--active-height);
+      width: var(--active-height);
+    }
+    .check-wrapper {
+      font-size: 16px;
+    }
+    .check-wrapper span {
+      padding: 10px 15px;
+    }
+    .arrow {
+      width: 19px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      margin: 20px auto;
     }
   }
   @media screen and (max-width: 480px) {
