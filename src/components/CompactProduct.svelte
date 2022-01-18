@@ -58,7 +58,7 @@
 
   .container {
     font-family: "Montserrat", sans-serif;
-    width: 240px;
+    width: fit-content;
     border: 0.3px solid #c4c4c4;
     border-radius: 10px;
     padding: 15px;
@@ -81,13 +81,13 @@
   .img {
     background-position: center;
     background-size: cover;
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     border-radius: 10px;
   }
   #img-1 {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     grid-row-start: 1;
     grid-row-end: 3;
     margin-right: 10px;
@@ -109,7 +109,79 @@
     z-index: 10;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1550px) {
+    .img {
+      width: 75px;
+      height: 75px;
+    }
+    #img-1 {
+      width: 160px;
+      height: 160px;
+    }
+  }
+
+  @media screen and (max-width: 1400px) {
+    .container {
+      margin: auto;
+      margin-bottom: 30px;
+    }
+    .img {
+      width: 55px;
+      height: 55px;
+    }
+    #img-1 {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    .container {
+      margin-bottom: 40px;
+    }
+    .img {
+      width: 70px;
+      height: 70px;
+    }
+    #img-1 {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  @media screen and (max-width: 1150px) {
+    .container {
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+    .img {
+      width: 55px;
+      height: 55px;
+    }
+    #img-1 {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .product-name {
+      font-size: 16px;
+      padding: 0 10px;
+    }
+    .img {
+      width: 40px;
+      height: 40px;
+    }
+    #img-2 {
+      margin-bottom: 5px;
+    }
+    #img-1 {
+      width: 87.5px;
+      height: 87.5px;
+      margin-right: 5px;
+    }
+  }
+  @media screen and (max-width: 900px) {
     .container {
       width: 155px;
       padding-top: 10px;
