@@ -52,6 +52,11 @@
     width: 100%;
   }
 
+  @media screen and (max-width: 1200px) {
+    .search-bar {
+      width: 70%;
+    }
+  }
   @media screen and (max-width: 768px) {
     main {
       border-radius: unset;
