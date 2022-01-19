@@ -42,6 +42,14 @@
   let screenWidth;
   $: width = (screenWidth - 30).toString() + "px";
   $: nameInfoWidth = (screenWidth - 130).toString() + "px";
+
+  let divWidth;
+  $: divwidth =
+    screenWidth >= 600
+      ? (divWidth - 160).toString() + "px"
+      : screenWidth >= 480
+      ? (divWidth - 135).toString() + "px"
+      : (divWidth - 100).toString() + "px";
 </script>
 
 <svelte:head>
@@ -51,7 +59,11 @@
 <svelte:window bind:innerWidth={screenWidth} />
 <main style="--width:{width};--name-info-width:{nameInfoWidth}">
   <div class="user-info">
-    <div class="followers-panel">
+    <div
+      class="followers-panel"
+      bind:clientWidth={divWidth}
+      style="--div-width:{divwidth}"
+    >
       <div
         class="pfp"
         style="background:url({pfp});background-size:cover;backgorund-position:center"
@@ -60,7 +72,9 @@
         <div class="name">
           <span id="username"
             >{name}
-            <div class="buzzar-code buzzar-code-responsive responsive-mobile">
+            <div
+              class="buzzar-code buzzar-code-responsive responsive-tablet responsive-mobile"
+            >
               {buzzarCode}
             </div></span
           >
@@ -72,11 +86,11 @@
               class="prod-coll-num">{products.length}</span
             >
           </div>
-          <div class="prod-coll">
+          <!-- <div class="prod-coll">
             <span class="prod-coll-name">COLLECTIONS</span><span
               class="prod-coll-num">{collections.length}</span
             >
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -86,13 +100,13 @@
           >{products.length}</span
         >
       </div>
-      <div class="prod-coll">
+      <!-- <div class="prod-coll">
         <span class="prod-coll-name">COLLECTIONS</span><span
           class="prod-coll-num">{collections.length}</span
         >
-      </div>
+      </div> -->
     </div>
-    <div class="buzzar-code non-responsive-mobile">
+    <div class="buzzar-code non-responsive-mobile non-responsive-tablet">
       Buzzar Code: {buzzarCode}
     </div>
     <div class="bio">
@@ -199,6 +213,7 @@
   }
   .user-info {
     margin: 50px 0;
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     width: 800px;
@@ -237,9 +252,7 @@
     border-radius: 5px;
     padding: 8px 0;
   }
-  .prod-coll:last-child {
-    margin-left: 40px;
-  }
+
   .prod-coll span {
     padding: 8px 12px;
     font-weight: 600;
@@ -385,6 +398,113 @@
   .responsive-mobile {
     display: none;
   }
+  .responsive-tablet {
+    display: none;
+  }
+
+  @media screen and (max-width: 1550px) {
+    main {
+      width: auto;
+    }
+    .gallery {
+      width: auto;
+    }
+    .products-gallery {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 1400px) {
+    .products-gallery {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-gap: 30px;
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    .user-info {
+      width: 60%;
+    }
+    .products-gallery {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .products-gallery {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .products-gallery {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .responsive-tablet {
+      display: block;
+    }
+
+    .user-info {
+      width: 80%;
+    }
+    #username {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    #user-tag {
+      width: var(--div-width);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .pfp {
+      min-width: 110px;
+      min-height: 110px;
+      max-width: 110px;
+      max-height: 110px;
+    }
+    .buzzar-code-responsive {
+      margin: unset;
+      margin-bottom: 10px;
+    }
+    .bio {
+      margin-top: 40px;
+    }
+    .bio img {
+      display: none;
+    }
+    .tabs {
+      margin: unset;
+      margin-left: 50px;
+    }
+    .non-responsive-tablet {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .products-gallery {
+      grid-gap: 15px;
+    }
+  }
+  @media screen and (max-width: 650px) {
+    .products-gallery {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 30px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .name-and-info {
+      margin-left: 25px;
+    }
+    .info {
+      margin-top: 25px;
+    }
+  }
   @media screen and (max-width: 480px) {
     .responsive-mobile {
       display: block;
@@ -406,18 +526,16 @@
     }
 
     .pfp {
-      width: 80px;
-      height: 80px;
+      min-width: 80px;
+      min-height: 80px;
+      max-width: 80px;
+      max-height: 80px;
     }
     .name-and-info {
       margin-left: 20px;
       width: var(--name-info-width);
     }
     #username {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
       font-size: 24px;
     }
     .buzzar-code-responsive {
@@ -447,12 +565,13 @@
     }
 
     .gallery {
-      width: 100%;
+      width: var(--width);
       margin-top: 30px;
     }
     .tabs {
       margin: 0 30px;
     }
+
     .products-gallery {
       grid-gap: 20px;
       grid-template-columns: 1fr 1fr;
