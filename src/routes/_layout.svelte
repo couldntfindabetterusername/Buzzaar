@@ -31,9 +31,11 @@
     <TopNav {segment} />
     <div
       class="div"
-      style={segment === "user" || segment === "add"
-        ? ""
-        : "--div-margin-top:130px;--div-margin-left:50px"}
+      style={segment === undefined ||
+      segment === "search" ||
+      segment === "wishlist"
+        ? "--div-margin-top:130px;--div-margin-left:50px"
+        : "--div-margin-top:130px;"}
     >
       <slot />
 
