@@ -69,8 +69,12 @@
   const moveRight = () => {
     const slider = document.getElementsByClassName("slider")[0];
     if (currentSlide < productImages.length) {
-      if (screenWidth > 480) {
+      if (screenWidth > 1200) {
         slider.style.transform = "translateX(-" + 450 * currentSlide + "px)";
+      } else if (screenWidth <= 1200 && screenWidth > 900) {
+        slider.style.transform = "translateX(-" + 360 * currentSlide + "px)";
+      } else if (screenWidth <= 900 && screenWidth > 480) {
+        slider.style.transform = "translateX(-" + 540 * currentSlide + "px)";
       } else {
         slider.style.transform =
           "translateX(-" + moveSlider * currentSlide + "px)";
@@ -83,9 +87,15 @@
     const slider = document.getElementsByClassName("slider")[0];
 
     if (currentSlide > 1) {
-      if (screenWidth > 480) {
+      if (screenWidth > 1200) {
         slider.style.transform =
           "translateX(-" + 450 * (currentSlide - 2) + "px)";
+      } else if (screenWidth <= 1200 && screenWidth > 900) {
+        slider.style.transform =
+          "translateX(-" + 360 * (currentSlide - 2) + "px)";
+      } else if (screenWidth <= 900 && screenWidth > 480) {
+        slider.style.transform =
+          "translateX(-" + 540 * (currentSlide - 2) + "px)";
       } else {
         slider.style.transform =
           "translateX(-" + moveSlider * (currentSlide - 2) + "px)";
@@ -714,13 +724,77 @@
   .responsive-mobile {
     display: none;
   }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 1200px) {
+    main {
+      width: 800px;
+    }
+    .left,
+    .slider-wrapper {
+      width: 360px;
+    }
+    .product-image {
+      min-width: 360px;
+    }
+    .slider-wrapper,
+    .slider {
+      height: 400px;
+    }
+    .right {
+      width: 440px;
+    }
+    #name-of-seller {
+      font-size: 24px;
+    }
+    #seller-link {
+      padding: 12px 15px;
+    }
+    .product-name {
+      font-size: 26px;
+    }
+    .variants-wrapper {
+      margin: 30px 0;
+    }
+    .final-pricing-wrapper {
+      margin: 30px;
+    }
+    .final-pricing {
+      font-size: 20px;
+    }
+    .final-pricing span {
+      padding: 10px 15px;
+    }
+    #buzzar-review-icon {
+      font-size: 48px;
+      padding: 50px 80px;
+    }
+    .question {
+      font-size: 22px;
+    }
+    .review {
+      font-size: 18px;
+    }
+    .product-info-heading {
+      padding: 10px 50px;
+      font-size: 24px;
+    }
+    .info-heading {
+      font-size: 22px;
+    }
+    .review-this-product span {
+      margin-left: 50px;
+    }
+    .product-for-review {
+      width: 140px;
+      height: 210px;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
     .responsive-mobile {
       display: block;
     }
     main {
-      padding: 15px;
-      width: var(--width);
+      width: 540px;
     }
     .top {
       flex-direction: column;
@@ -728,6 +802,48 @@
     .left,
     .right {
       width: 100%;
+    }
+    .slider-wrapper {
+      width: 540px;
+    }
+    .product-image {
+      min-width: 540px;
+    }
+    .slider-wrapper,
+    .slider {
+      height: 600px;
+    }
+    .prod-seller {
+      margin: 0 45px;
+    }
+    .product-name {
+      font-size: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .variants-wrapper {
+      grid-template-columns: 1fr 1fr;
+      margin: 25px 0 20px;
+    }
+    .seller-msg {
+      padding: 30px 0;
+    }
+    #seller-name,
+    #msg {
+      margin: 0 30px;
+    }
+    #msg {
+      font-size: 21px;
+    }
+    .non-responsive-mobile {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    main {
+      padding: 15px;
+      width: var(--width);
     }
 
     .slider-wrapper,
@@ -766,10 +882,7 @@
       width: 35px;
       height: 35px;
     }
-    .variants-wrapper {
-      grid-template-columns: 1fr 1fr;
-      margin: 25px 0 20px;
-    }
+
     .variant-heading {
       font-size: 18px;
     }
@@ -851,10 +964,6 @@
     .product-for-review {
       width: 100px;
       height: 150px;
-    }
-
-    .non-responsive-mobile {
-      display: none;
     }
   }
 </style>
