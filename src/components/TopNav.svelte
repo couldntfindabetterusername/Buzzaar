@@ -249,7 +249,7 @@
     nav {
       width: var(--width);
       left: var(--responsive-left);
-      z-index: 1;
+      z-index: 2;
     }
     .logo {
       margin-left: 40px;
