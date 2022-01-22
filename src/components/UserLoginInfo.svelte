@@ -12,6 +12,7 @@
   let screenHeight, screenWidth;
   $: width = screenWidth;
   $: height = (screenHeight + 0).toString() + "px";
+  $: tabImgHeight = (screenWidth * 0.7).toString() + "px";
 </script>
 
 <svelte:window
@@ -66,7 +67,10 @@
 </main>
 
 {#if login || signup}
-  <section bind:this={modalContainer} style="--height:{height}">
+  <section
+    bind:this={modalContainer}
+    style="--height:{height};--tab-img-height:{tabImgHeight}"
+  >
     <div class="modal">
       {#if login}
         <div
@@ -75,7 +79,8 @@
         />
         <div class="right">
           <span class="modal-heading" id="login-heading"
-            >Login into your Buzzaar account</span
+            >Login into your {#if screenWidth < 850 || screenWidth > 1200}Buzzaar{/if}
+            account</span
           >
           <form action="">
             <div class="form-item">
@@ -270,12 +275,13 @@
     left: 0;
     top: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background: rgba(0, 0, 0, 0.5);
     z-index: 5;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: scroll;
   }
   .modal {
     width: 1100px;
@@ -411,6 +417,117 @@
     }
     .shop {
       padding: 8px 12px;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .modal {
+      width: 750px;
+    }
+    .left {
+      width: 420px;
+    }
+    .right {
+      padding: 30px 0;
+    }
+    .modal-heading-wrapper,
+    .modal-heading {
+      width: 240px;
+    }
+    .modal-heading-signup,
+    .modal-heading {
+      font-size: 21px;
+    }
+    #login-heading {
+      font-size: 19px;
+    }
+    form {
+      margin: unset;
+    }
+    .form-item {
+      margin-top: 20px;
+    }
+    label {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    input {
+      font-size: 16px;
+      padding: 8px 15px;
+      border-radius: 10px;
+    }
+    .show-password {
+      width: 18px;
+    }
+    .or-form {
+      margin: 8px;
+      font-size: 15px;
+    }
+    .btn {
+      padding: 8px;
+      font-size: 16px;
+    }
+    .bottom {
+      font-size: 14px;
+      margin-top: 20px;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    section {
+      align-items: unset;
+    }
+    .modal {
+      width: 70%;
+      flex-direction: column;
+    }
+    .left {
+      height: var(--tab-img-height);
+      width: 100%;
+    }
+    .modal-heading {
+      font-size: 23px;
+    }
+    .form-item {
+      margin-top: 35px;
+    }
+    label {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+    input {
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 15px;
+    }
+    .btn {
+      font-size: 21px;
+      margin-top: 30px;
+      padding: 10px;
+    }
+    .or-form {
+      font-size: 18px;
+      margin: 15px;
+    }
+    .bottom {
+      font-size: 18px;
+      margin-top: 30px;
+    }
+    .modal-heading-wrapper {
+      width: 360px;
+    }
+    .modal-heading-signup {
+      font-size: 23px;
+    }
+    .show-password {
+      width: 24px;
+    }
+
+    #login-heading {
+      font-size: 23px;
+    }
+    .modal-heading {
+      width: initial;
     }
   }
   @media screen and (max-width: 768px) {
