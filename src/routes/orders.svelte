@@ -62,7 +62,8 @@
 
   main {
     font-family: "Montserrat", sans-serif;
-    padding: 50px 200px;
+    padding: 50px 0px;
+    margin: auto;
     color: #444444;
   }
   .heading {
@@ -127,6 +128,84 @@
     font-weight: 600;
   }
 
+  @media screen and (max-width: 1300px) {
+    .heading {
+      margin: unset;
+      font-size: 26px;
+    }
+    .cards-wrapper {
+      margin: 20px auto;
+      grid-gap: unset;
+    }
+    .card {
+      transform: scale(0.85);
+    }
+    .heading,
+    footer {
+      margin-left: 35px;
+    }
+    footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 15px;
+      width: fit-content;
+    }
+    .footer-heading {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    .cards-wrapper {
+      grid-template-columns: 1fr;
+      grid-gap: 40px;
+      margin: 35px 40px;
+    }
+    .card {
+      transform: unset;
+    }
+    .heading,
+    footer {
+      margin-left: unset;
+    }
+    footer {
+      justify-content: unset;
+      grid-template-columns: unset;
+      width: unset;
+    }
+    .footer-heading {
+      grid-column-start: unset;
+      grid-column-end: unset;
+    }
+    footer .flex {
+      margin-bottom: unset;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .cards-wrapper {
+      margin: 30px auto;
+    }
+    footer {
+      margin-top: 60px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .card {
+      width: 380px;
+      padding: 15px;
+    }
+    .left {
+      width: 140px;
+      height: 140px;
+      margin-right: 25px;
+    }
+    .right {
+      width: 180px;
+    }
+  }
   @media screen and (max-width: 480px) {
     main {
       padding: 30px;
@@ -165,9 +244,6 @@
     footer {
       margin-top: 60px;
       font-size: 17px;
-      display: grid;
-      grid-gap: 15px;
-      justify-content: unset;
     }
     .footer-heading {
       margin-bottom: 10px;
