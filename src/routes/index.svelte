@@ -21,12 +21,14 @@
   @media screen and (max-width: 768px) {
     main {
       margin: 0 50px;
+      margin-left: 110px;
     }
   }
 
   @media screen and (max-width: 700px) {
     main {
       margin: 0 20px;
+      margin-left: 80px;
     }
   }
   @media screen and (max-width: 500px) {

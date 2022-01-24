@@ -6,7 +6,7 @@
   let menuOpen = false,
     menuBtn,
     menuWrapper,
-    loggedIn = true,
+    loggedIn = false,
     isBuyer = false;
 
   const menuHandler = () => {
@@ -54,10 +54,10 @@
 
 <svelte:window bind:innerHeight={screenHeight} bind:innerWidth={screenWidth} />
 
-{#if screenWidth <= 480}
-  <LeftNav style={`${!menuOpen ? "" : "z-index:0;"}`} />{/if}
 <nav
-  style="--width:{width};--tab-width:{tabWidth};{segment === undefined ||
+  style="{menuOpen
+    ? 'z-index:4'
+    : ''};--width:{width};--tab-width:{tabWidth};{segment === undefined ||
   segment === 'search' ||
   segment === 'add' ||
   segment === 'wishlist' ||
@@ -265,6 +265,7 @@
       width: var(--tab-width);
       padding: 30px 60px;
       justify-content: space-between;
+      right: 0;
     }
 
     .logo {

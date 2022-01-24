@@ -10,7 +10,7 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 <main>
-  {#if screenWidth > 480}
+  {#if screenWidth > 768}
     <LeftNav {segment} />{/if}
 
   <article
@@ -52,6 +52,8 @@
       </div>
     </div>
   </article>
+  {#if screenWidth <= 768}
+    <LeftNav {segment} />{/if}
 </main>
 
 <style>
@@ -97,11 +99,14 @@
   }
 
   @media screen and (max-width: 768px) {
+    article {
+      margin-left: 0;
+    }
     .side-panel {
       display: none;
     }
     .div {
-      margin-left: 0;
+      margin-left: 60px;
     }
   }
 
@@ -115,6 +120,7 @@
     .div {
       margin-top: 90px;
       flex-direction: column;
+      margin-left: unset;
     }
 
     .extra {

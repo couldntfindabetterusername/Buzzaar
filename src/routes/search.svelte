@@ -63,6 +63,7 @@
       padding: unset;
       border: unset;
       border-top: 0.5px solid rgba(196, 196, 196, 0.85);
+      margin-left: 60px;
     }
     .search-bar {
       width: 75%;
