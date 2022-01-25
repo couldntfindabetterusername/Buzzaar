@@ -47,8 +47,10 @@
     const slider = document.getElementsByClassName("slider")[1];
     console.log(slider);
     if (currentSlide < Product.productImages.length) {
-      if (screenWidth > 480) {
+      if (screenWidth > 1100) {
         slider.style.transform = "translateX(-" + 405 * currentSlide + "px)";
+      } else if (screenWidth >= 480 && screenWidth < 1100) {
+        slider.style.transform = "translateX(-" + 315 * currentSlide + "px)";
       } else {
         slider.style.transform =
           "translateX(-" + moveSlider * currentSlide + "px)";
@@ -61,9 +63,12 @@
     const slider = document.getElementsByClassName("slider")[1];
     console.log(slider);
     if (currentSlide > 1) {
-      if (screenWidth > 480) {
+      if (screenWidth > 1100) {
         slider.style.transform =
           "translateX(-" + 405 * (currentSlide - 2) + "px)";
+      } else if (screenWidth >= 480 && screenWidth < 1100) {
+        slider.style.transform =
+          "translateX(-" + 315 * (currentSlide - 2) + "px)";
       } else {
         slider.style.transform =
           "translateX(-" + moveSlider * (currentSlide - 2) + "px)";
@@ -116,7 +121,7 @@
         </div>
         <span class="heading responsive-mobile">create your profile card</span>
         <form class="form" on:submit|preventDefault bind:this={form}>
-          <div class="flex flex-column-responsive">
+          <div class="flex flex-column-responsive grid-at-1100">
             <div class="flex flex-column input-label">
               <label for="name">name</label>
               <input
@@ -174,7 +179,7 @@
                   required
                 />
               </div>
-              <div class="flex flex-column-responsive">
+              <div class="flex flex-column-responsive grid-at-1100">
                 <div class="flex flex-column input-label">
                   <label for="landmark">landmark</label>
                   <input
@@ -332,6 +337,7 @@
   .modal-container {
     width: 1000px;
     border-radius: 15px;
+    margin-left: 100px;
     overflow: hidden;
   }
   .modal {
@@ -526,6 +532,8 @@
     font-size: 19px;
     color: rgb(68 68 68 / 70%);
     font-weight: 600;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
   .value {
     color: #444444;
@@ -576,6 +584,89 @@
 
   .responsive-mobile {
     display: none;
+  }
+
+  @media screen and (max-width: 1100px) {
+    .modal-container {
+      width: 800px;
+    }
+
+    .grid-at-1100 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .product-review-wrapper {
+      justify-content: space-between;
+    }
+    .slider-wrapper,
+    .product-image {
+      width: 315px;
+    }
+
+    .slider-wrapper,
+    .slider {
+      height: 350px;
+    }
+    .product-info {
+      width: 350px;
+      margin-left: unset;
+    }
+    .specs {
+      grid-template-columns: 1fr;
+      grid-gap: 10px;
+    }
+    .value {
+      margin-right: unset;
+    }
+    .address-wrapper {
+      padding: 20px;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .modal-container {
+      width: 500px;
+      margin-left: unset;
+    }
+    .grid-at-1100 {
+      grid-template-columns: 1fr;
+    }
+    #name,
+    #email,
+    #landmark {
+      width: 80%;
+    }
+    #phone1,
+    #phone2 {
+      width: 63%;
+    }
+    .input-label {
+      margin-bottom: 10px;
+    }
+    input,
+    textarea {
+      margin-top: 4px;
+    }
+    .product-review-wrapper {
+      flex-direction: column;
+      padding: 30px;
+    }
+    .slider-wrapper {
+      margin: auto;
+    }
+    .product-info {
+      width: 100%;
+      margin-top: 30px;
+    }
+    .specs {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .modal-container {
+      width: 450px;
+    }
   }
   @media screen and (max-width: 480px) {
     .responsive-mobile {
@@ -640,6 +731,7 @@
     .slider-wrapper {
       width: var(--product-review-width);
       height: var(--slider-height);
+      margin: unset;
     }
     .slider {
       height: var(--slider-height);
