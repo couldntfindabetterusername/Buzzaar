@@ -84,7 +84,8 @@
     <a href="/contact">Contact</a>
     <a href="/faq">FAQ</a>
     <a href="/help">Help</a>
-    <a href="/seller">Become a seller</a>
+    <a href="/bag" class="topnav-btn">Bag</a>
+    <a href="/seller" class="topnav-btn">Become a seller</a>
   </div>
 
   <!--for hamburger menu-->
@@ -105,6 +106,9 @@
             <span class="hamburger-username">hello, (user)</span>
             <a href="/user" class="mobile-view" on:click={() => menuHandler()}
               >My Profile</a
+            >
+            <a href="/chat" class="mobile-view" on:click={() => menuHandler()}
+              >Chat with Buzzaar</a
             >
             <a href="/orders" class="mobile-view" on:click={() => menuHandler()}
               >Orders</a
@@ -163,21 +167,26 @@
   }
   .nav-items {
     font-family: "Montserrat", sans-serif;
-    width: 500px;
+    width: 580px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 18px;
-    margin-left: 250px;
     margin-right: 80px;
   }
   .nav-items a {
     color: #444;
-    padding: 15px;
+  }
+  .nav-items .topnav-btn {
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #99319b;
+    border: 1px solid #99319b;
   }
   .nav-items a:last-child {
     background-color: #99319b;
     color: #fff;
-    border-radius: 10px;
   }
   .mobile-view {
     display: none;
@@ -229,19 +238,18 @@
       margin-left: 60px;
     }
     .nav-items {
-      margin-left: unset;
+      width: 475px;
+      font-size: 16px;
       margin-right: 30px;
     }
-    .nav-items a {
-      padding: 10px;
+
+    .nav-items .topnav-btn {
+      padding: 8px 12px;
     }
   }
   @media screen and (max-width: 950px) {
     .logo {
       font-size: 50px;
-    }
-    .nav-items {
-      width: 450px;
     }
   }
 
@@ -255,12 +263,11 @@
       margin-left: 40px;
     }
     .nav-items {
-      width: 400px;
       margin-right: 30px;
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 850px) {
     nav {
       width: var(--tab-width);
       padding: 30px 60px;

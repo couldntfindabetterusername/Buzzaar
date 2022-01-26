@@ -18,17 +18,15 @@
     background: rgb(251 251 251 / 80%);
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 850px) {
     main {
       margin: 0 50px;
-      margin-left: 110px;
     }
   }
 
   @media screen and (max-width: 700px) {
     main {
       margin: 0 20px;
-      margin-left: 80px;
     }
   }
   @media screen and (max-width: 500px) {
