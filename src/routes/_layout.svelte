@@ -98,16 +98,19 @@
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 850px) {
     article {
       margin-left: 0;
+    }
+
+    .div {
+      margin-left: 60px;
     }
     .side-panel {
       display: none;
     }
-    .div {
-      margin-left: 60px;
-    }
+  }
+  @media screen and (max-width: 768px) {
   }
 
   @media screen and (max-width: 480px) {

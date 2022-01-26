@@ -218,7 +218,7 @@
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 850px) {
     .container {
       margin: 20px auto;
     }
