@@ -2,6 +2,7 @@
   import LeftNav from "../components/LeftNav.svelte";
   import TopNav from "../components/TopNav.svelte";
   import UserLoginInfo from "../components/UserLoginInfo.svelte";
+  import Chat from "../components/Chat.svelte";
   export let segment;
 
   let screenWidth;
@@ -49,6 +50,7 @@
           : 'none'};"
       >
         <UserLoginInfo />
+        <Chat />
       </div>
     </div>
   </article>

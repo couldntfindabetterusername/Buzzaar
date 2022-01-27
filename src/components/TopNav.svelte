@@ -1,8 +1,8 @@
 <script>
   import UserLogin from "./UserLoginInfo.svelte";
   import ChatIconDark from "../assets/chat icon dark.png";
-  import LeftNav from "./LeftNav.svelte";
-
+  import BagDark from "../assets/bag(dark).png";
+  import BagLight from "../assets/bag(purple).png";
   let menuOpen = false,
     menuBtn,
     menuWrapper,
@@ -68,10 +68,14 @@
   <a href="/" class="logo">Buzzaar</a>
 
   <aside>
-    <div
-      class="chat-icon"
-      style="background-image: url({ChatIconDark});background-position:center;background-size:cover;"
-    />
+    <a href="/bag"
+      ><div
+        class="bag-icon"
+        style="background-image: url({segment === '/bag'
+          ? BagLight
+          : BagDark});background-position:center;background-size:cover;"
+      /></a
+    >
     <div class="menu-btn" bind:this={menuBtn} on:click={() => menuHandler()}>
       <div class="menu-btn-burger" />
       <div class="menu-btn-burger" />
@@ -84,7 +88,9 @@
     <a href="/contact">Contact</a>
     <a href="/faq">FAQ</a>
     <a href="/help">Help</a>
-    <a href="/bag" class="topnav-btn">Bag</a>
+    <a href="/bag" class="topnav-btn"
+      >Bag&nbsp;<img class="bag-icon" src={BagLight} alt="" /></a
+    >
     <a href="/seller" class="topnav-btn">Become a seller</a>
   </div>
 
@@ -176,6 +182,10 @@
   }
   .nav-items a {
     color: #444;
+  }
+  .bag-icon {
+    width: 20px;
+    height: 18px;
   }
   .nav-items .topnav-btn {
     padding: 12px 15px;
@@ -282,7 +292,7 @@
     aside {
       display: flex;
     }
-    aside .chat-icon {
+    aside .bag-icon {
       width: 35px;
       height: 35px;
       margin-right: 20px;
@@ -406,7 +416,7 @@
       margin-left: unset;
     }
 
-    aside .chat-icon {
+    aside .bag-icon {
       width: 32px;
       height: 32px;
     }
