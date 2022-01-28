@@ -5,7 +5,10 @@
 
 <main>
   <div class="top">
-    <div class="pfp" />
+    <div
+      class="pfp"
+      style="background: url(https://source.unsplash.com/random) center / cover;"
+    />
     <div class="username">{buzzaarChat.chatWith}</div>
   </div>
   <div class="chat-section">
@@ -205,5 +208,153 @@
   }
   button {
     color: #99319b;
+  }
+
+  @media screen and (max-width: 1000px) {
+    main {
+      margin: auto;
+      margin-top: 20px;
+      width: 700px;
+    }
+    .right {
+      width: -webkit-fill-available;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    main {
+      width: 90%;
+      height: calc(100vh - 180px);
+    }
+    .top {
+      padding: 20px 40px;
+    }
+    .pfp {
+      min-width: 40px;
+      max-width: 40px;
+      min-height: 40px;
+      max-height: 40px;
+    }
+    .username {
+      font-size: 21px;
+    }
+    .chat-section {
+      height: calc(100% - 120px);
+    }
+    .chat-wrapper {
+      height: calc(100% - 70px);
+    }
+    .type-in {
+      height: 50px;
+      justify-content: space-around;
+    }
+    input,
+    button {
+      font-size: 18px;
+    }
+    input {
+      margin: 0 20px;
+      width: 78%;
+    }
+
+    .msg {
+      margin-top: 30px;
+      max-width: 380px;
+    }
+    .card {
+      padding: 15px;
+      width: 350px;
+    }
+    .left {
+      min-width: 120px;
+      max-width: 120px;
+      min-height: 120px;
+      max-height: 120px;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-right: 20px;
+    }
+    .product-name {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .flex {
+      margin-bottom: 5px;
+    }
+    .message {
+      margin: 15px 20px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .chat-section {
+      padding: 20px;
+    }
+    .msg {
+      max-width: 320px;
+    }
+    .card {
+      width: 290px;
+    }
+    .left {
+      min-width: 100px;
+      max-width: 100px;
+      min-height: 100px;
+      max-height: 100px;
+      margin-right: 10px;
+    }
+    input {
+      width: 70%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    main {
+      width: calc(100% - 20px);
+      margin-top: 15px;
+    }
+    .top {
+      height: 45px;
+      padding: 0 30px;
+    }
+    .pfp {
+      min-width: 30px;
+      max-width: 30px;
+      min-height: 30px;
+      max-height: 30px;
+    }
+    .chat-section {
+      height: calc(100% - 85px);
+    }
+    .msg {
+      max-width: calc(100% - 25px);
+      margin-top: 20px;
+    }
+    .card {
+      width: 180px;
+      flex-direction: column;
+      padding: 25px;
+    }
+    .left {
+      min-width: 160px;
+      max-width: 160px;
+      min-height: 160px;
+      max-height: 160px;
+      margin-right: unset;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .right {
+      font-size: 14px;
+    }
+    .type-in {
+      margin-top: 15px;
+    }
+    input {
+      font-size: 15px;
+      margin: 0 10px;
+    }
   }
 </style>
