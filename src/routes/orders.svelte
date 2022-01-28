@@ -41,7 +41,8 @@
             >Seller:&nbsp;<span class="content">{"Tres Chic"}</span></span
           >
         </div>
-      </div>{/each}
+      </div>
+    {/each}
   </div>
 
   <footer>

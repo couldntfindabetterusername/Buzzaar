@@ -16,6 +16,7 @@ const chatData = [
           seller: "Tres Chic",
           reciever: "Shreyash Mishra",
           status: "placed",
+          image: "https://source.unsplash.com/clothes",
         },
       },
       {
