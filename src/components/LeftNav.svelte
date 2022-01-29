@@ -196,7 +196,7 @@
           ? 'inline block'
           : 'none'};"
       /><a
-        href="/{username}"
+        href="/user"
         style="--link-margin:{segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
