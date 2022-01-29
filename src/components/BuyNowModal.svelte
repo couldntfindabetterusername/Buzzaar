@@ -2,6 +2,7 @@
   // import Product from "../routes/[user]/[product].svelte";
   import Arrow from "../assets/arrow(dark).png";
   import ArrowForward from "../assets/arrow forward.png";
+  import Upload from "../assets/upload.png";
 
   export let SizeChosenValue, ColorChosenValue, Product;
 
@@ -24,20 +25,28 @@
   }
 
   let translateXvalue = 0;
-  function nextSlide(e) {
-    const checked = checkForm();
-    if (checked) {
-      const slide = document.getElementsByClassName("slide");
-      console.log(slide.length);
-      for (let i = 0; i < slide.length; i++) {
-        slide[i].style.visibility = "hidden";
-      }
-      const modal = document.getElementsByClassName("modal");
-      translateXvalue = translateXvalue + 100 / 3;
-      modal[0].style.transform = `translateX(-${translateXvalue}%)`;
-      console.log(e.path[3].nextElementSibling);
-      e.path[3].nextElementSibling.style.visibility = "visible";
+  function prevSlide(e) {
+    const slide = document.getElementsByClassName("slide");
+    console.log(slide.length);
+    for (let i = 0; i < slide.length; i++) {
+      slide[i].style.visibility = "hidden";
     }
+    const modal = document.getElementsByClassName("modal");
+    translateXvalue = translateXvalue - (Product.customization ? 25 : 100 / 3);
+    modal[0].style.transform = `translateX(-${translateXvalue}%)`;
+    e.path[2].previousElementSibling.style.visibility = "visible";
+  }
+
+  function nextSlide(e) {
+    const slide = document.getElementsByClassName("slide");
+    console.log(slide.length);
+    for (let i = 0; i < slide.length; i++) {
+      slide[i].style.visibility = "hidden";
+    }
+    const modal = document.getElementsByClassName("modal");
+    translateXvalue = translateXvalue + 100 / (Product.customization ? 4 : 3);
+    modal[0].style.transform = `translateX(-${translateXvalue}%)`;
+    e.path[3].nextElementSibling.style.visibility = "visible";
   }
 
   let navDotsContainer,
@@ -103,15 +112,76 @@
   style="--input-width:{inputWidth};--phone-input-width:{phoneInputWidth};--product-review-width:{productReviewWidth};--slider-height:{sliderHeight};--delivery-address-box-width:{deliveryAddressBoxWidth}"
 >
   <div class="modal-container">
-    <div class="modal">
+    <div
+      class="modal"
+      style="width: {Product.customization ? '400%' : '300%'};"
+    >
+      {#if Product.customization}
+        <div class="slide">
+          <div class="heading-wrapper">
+            <img src={Arrow} alt="" class="back-arrow" />
+            <span class="heading non-responsive-mobile"
+              >customize your product</span
+            >
+            <span class="page" />
+          </div>
+          <span class="heading responsive-mobile">customize your product</span>
+          <div class="customization-wrapper">
+            <div class="flex flex-column input-label">
+              <label for="customization-field-1"
+                >How do you want to customize it?</label
+              >
+              <textarea
+                name="customization-field-1"
+                id="customization-field-1"
+                cols="30"
+                rows="3"
+              />
+            </div>
+            <div class="flex flex-column input-label">
+              <label for="customization-field-2"
+                >Upload Picture of Customization ( if any )</label
+              >
+              <label for="customization-field-2" id="customization-label"
+                >UPLOAD <img src={Upload} alt="" /></label
+              >
+              <input
+                type="file"
+                name="customization-field-2"
+                id="customization-field-2"
+              />
+            </div>
+            <div class="flex flex-column input-label">
+              <label for="customization-field-3"
+                >Any specific note for the seller (eg- Gift pack, a special
+                note, etc)</label
+              >
+              <textarea
+                name="customization-field-1"
+                id="customization-field-1"
+                cols="30"
+                rows="3"
+              />
+            </div>
+            <div class="btn-container">
+              <button type="submit" class="btn" on:click={(e) => nextSlide(e)}
+                >save & next</button
+              >
+            </div>
+          </div>
+        </div>
+      {/if}
       <div class="slide">
         <div class="heading-wrapper">
           <img
             src={Arrow}
             alt=""
             class="back-arrow"
-            on:click={() => {
+            on:click={(e) => {
               form.reset();
+              if (Product.customization) {
+                prevSlide(e);
+              }
             }}
           />
           <span class="heading non-responsive-mobile"
@@ -209,15 +279,26 @@
           </div>
 
           <div class="btn-container">
-            <button type="submit" class="btn" on:click={(e) => nextSlide(e)}
-              >save & next</button
+            <button
+              type="submit"
+              class="btn"
+              on:click={(e) => {
+                if (checkForm()) {
+                  nextSlide(e);
+                }
+              }}>save & next</button
             >
           </div>
         </form>
       </div>
       <div class="slide">
         <div class="heading-wrapper">
-          <img src={Arrow} alt="" class="back-arrow" />
+          <img
+            src={Arrow}
+            alt=""
+            class="back-arrow"
+            on:click={(e) => prevSlide(e)}
+          />
 
           <span class="heading non-responsive-mobile"
             >confirm your product card</span
@@ -310,7 +391,21 @@
           </div>
         </div>
       </div>
-      <div class="slide" />
+      <div class="slide">
+        <div class="heading-wrapper">
+          <img
+            src={Arrow}
+            alt=""
+            class="back-arrow"
+            on:click={(e) => prevSlide(e)}
+          />
+
+          <span class="heading non-responsive-mobile">payment</span>
+          <span class="page">3 / 3</span>
+        </div>
+        <span class="heading responsive-mobile">payment</span>
+        <div class="payment-wrapper" />
+      </div>
     </div>
   </div>
 </main>
@@ -341,7 +436,6 @@
     overflow: hidden;
   }
   .modal {
-    width: 300%;
     text-transform: uppercase;
     font-family: "Montserrat";
     color: #444444;
@@ -371,6 +465,10 @@
   }
   .page {
     font-weight: 500;
+  }
+
+  .customization-wrapper {
+    padding: 30px 70px;
   }
   .form {
     padding: 40px;
@@ -412,6 +510,29 @@
   .phone-code {
     width: 30px;
     margin-right: 5px;
+  }
+  #customization-label {
+    width: fit-content;
+    cursor: pointer;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #99319b;
+    display: flex;
+    align-items: center;
+    border: 0.8px solid #c4c4c4;
+    border-radius: 7px;
+    margin-top: 8px;
+  }
+  #customization-label img {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+  }
+  #customization-field-2 {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
   }
   #name {
     width: 200px;
@@ -581,7 +702,9 @@
     color: #ffffff;
     background: #99319b;
   }
-
+  .payment-wrapper {
+    padding: 30px;
+  }
   .responsive-mobile {
     display: none;
   }
@@ -626,10 +749,12 @@
   @media screen and (max-width: 850px) {
     .modal-container {
       width: 500px;
-      margin-left: unset;
     }
     .grid-at-1100 {
       grid-template-columns: 1fr;
+    }
+    .customization-wrapper {
+      padding: 30px;
     }
     #name,
     #email,
@@ -683,6 +808,7 @@
     .modal-container {
       width: 100%;
       border-radius: unset;
+      margin-left: unset;
     }
     .modal {
       align-items: unset;
@@ -690,6 +816,8 @@
 
     .slide {
       border-radius: unset;
+      height: fit-content;
+      min-height: 100vh;
     }
     .heading {
       text-align: center;
@@ -707,6 +835,14 @@
     }
     .input-label > div {
       display: flex;
+    }
+    #customization-label {
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+    #customization-label img {
+      width: 16px;
+      height: 16px;
     }
     #name,
     #email,
