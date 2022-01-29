@@ -152,6 +152,71 @@
     color: #444444;
   }
 
+  @media screen and (max-width: 1200px) {
+    main {
+      width: 90%;
+    }
+    .section {
+      grid-gap: 20px;
+      width: calc(100% - 180px);
+    }
+    .heading {
+      font-size: 26px;
+    }
+    .subtext-1,
+    .subtext-2 {
+      font-size: 22px;
+    }
+    .edit-btn {
+      padding: 8px 30px;
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .section {
+      padding: 0 20px;
+      width: calc(100% - 60px);
+      grid-gap: 10px;
+    }
+    .edit-btn {
+      right: 20px;
+    }
+    .heading {
+      font-size: 23px;
+    }
+    .subtext-1,
+    .subtext-2 {
+      font-size: 19px;
+    }
+    .cards-wrapper {
+      grid-gap: 25px;
+    }
+    .card {
+      width: 360px;
+      padding: 20px;
+    }
+
+    .left {
+      min-width: 120px;
+      max-width: 120px;
+      min-height: 120px;
+      max-height: 120px;
+      margin-right: 20px;
+    }
+    .right {
+      font-size: 16px;
+      width: 220px;
+    }
+    .product-name {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+    .flex {
+      margin-bottom: 5px;
+    }
+  }
+
   @media screen and (max-width: 480px) {
     main {
       width: var(--width);
