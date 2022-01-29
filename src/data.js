@@ -38,6 +38,7 @@ const userData = [
           "https://source.unsplash.com/nature",
           "https://source.unsplash.com/nature",
         ],
+        customization: false,
       },
       {
         productId: 2,
@@ -69,6 +70,7 @@ const userData = [
           "https://source.unsplash.com/nature",
           "https://source.unsplash.com/nature",
         ],
+        customization: true,
       },
       {
         productId: 3,
@@ -100,6 +102,7 @@ const userData = [
           "https://source.unsplash.com/nature",
           "https://source.unsplash.com/nature",
         ],
+        customization: true,
       },
       {
         productId: 4,
@@ -131,6 +134,7 @@ const userData = [
           "https://source.unsplash.com/nature",
           "https://source.unsplash.com/nature",
         ],
+        customization: true,
       },
       {
         productId: 5,
@@ -162,6 +166,7 @@ const userData = [
           "https://source.unsplash.com/nature",
           "https://source.unsplash.com/nature",
         ],
+        customization: true,
       },
       {
         productId: 6,
@@ -193,6 +198,7 @@ const userData = [
           "https://source.unsplash.com/nature",
           "https://source.unsplash.com/nature",
         ],
+        customization: true,
       },
     ],
     collections: [
