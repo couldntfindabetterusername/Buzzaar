@@ -3,7 +3,7 @@
   import Wishlist from "../assets/wishlist.png";
   import WishlistFill from "../assets/wishlist solid fill.png";
   import ArrowWhite from "../assets/arrow(white).png";
-
+  import Rating from "../components/Rating.svelte";
   let saved = false;
 
   const clickHandler = (e) => {
@@ -24,6 +24,8 @@
       ? "250px"
       : screenWidth <= 768
       ? (screenWidth - 450).toString() + "px"
+      : screenWidth <= 850
+      ? (screenWidth / 3).toString() + "px"
       : (screenWidth / 4).toString() + "px";
 
   export let product;
@@ -76,6 +78,7 @@
     />
   </div>
   <div class="bottom">
+    <Rating />
     <div class="check-wrapper">
       <span class="price">₹ {product.productPrize}</span>
       <a href="/treschic/{product.productId}"
@@ -150,7 +153,8 @@
   }
   .bottom {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
   }
   .check-wrapper {
     font-size: 18px;
@@ -159,6 +163,7 @@
     border: 1px solid #99319b;
     border-radius: 10px;
     overflow: hidden;
+    height: fit-content;
   }
   .check-wrapper span {
     padding: 15px;
@@ -208,13 +213,13 @@
       width: var(--active-height);
     }
     .check-wrapper {
-      font-size: 16px;
+      font-size: 14px;
     }
     .check-wrapper span {
-      padding: 10px 15px;
+      padding: 8px 10px;
     }
     .arrow {
-      width: 19px;
+      width: 16px;
     }
   }
 
