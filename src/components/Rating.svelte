@@ -40,7 +40,7 @@
   label {
     display: block;
     cursor: pointer;
-    font-size: 28px;
+    font-size: 24px;
     color: #fff;
     -webkit-text-stroke: 2.5px #99319b;
     transition: all 0.1s ease-in-out;
@@ -59,7 +59,7 @@
 
   @media screen and (max-width: 1200px) {
     label {
-      font-size: 22px;
+      font-size: 20px;
     }
     span {
       font-size: 12px;
@@ -68,7 +68,7 @@
 
   @media screen and (max-width: 950px) {
     label {
-      font-size: 20px;
+      font-size: 16px;
     }
     span {
       font-size: 11px;
