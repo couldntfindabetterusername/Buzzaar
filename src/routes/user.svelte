@@ -9,6 +9,7 @@
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
+
 <main
   style="--width:{width};--card-width:{cardWidth};--right-container-width:{rightContainerWidth}"
 >
