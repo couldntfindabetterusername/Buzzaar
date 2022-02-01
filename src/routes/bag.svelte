@@ -452,5 +452,13 @@
     .right {
       padding-top: 10px;
     }
+    .checkout,
+    .amount-0 {
+      font-size: 16px;
+      padding: 10px 15px;
+    }
+    .arrow {
+      width: 19px;
+    }
   }
 </style>

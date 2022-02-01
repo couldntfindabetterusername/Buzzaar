@@ -326,7 +326,7 @@
 
     {#if buzzarMessage}
       <div class="buzzar-review">
-        <h1 id="buzzar-review-icon">Buzzar</h1>
+        <h1 id="buzzar-review-icon">Buzzaar</h1>
         <div class="buzzar-review-msg">
           <span class="question">What's special about this product?</span>
           <span class="review">{buzzarMessage}</span>
@@ -608,7 +608,6 @@
   .final-pricing-wrapper {
     margin: 35px;
     display: flex;
-    justify-content: end;
   }
   .final-pricing {
     border: 0.5px solid #99319b;
@@ -616,6 +615,7 @@
     font-size: 22px;
     font-weight: 600;
     color: #99319b;
+    margin-left: auto;
   }
   .final-pricing span {
     padding: 15px;
@@ -877,9 +877,10 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       grid-gap: 32px;
-      margin: 20px 0;
-      width: 540px;
+      margin: 20px;
+      width: unset;
       overflow: hidden;
+      overflow-x: scroll;
       justify-content: unset;
     }
     .product-for-review {
@@ -943,14 +944,15 @@
     .arrow {
       width: 21px;
     }
-    .review-product-grid {
+    /* .review-product-grid {
       width: 405px;
-    }
+    } */
   }
   @media screen and (max-width: 480px) {
     main {
       padding: 15px;
       width: var(--width);
+      background: #fbfbfb;
     }
 
     .slider-wrapper,
@@ -975,7 +977,9 @@
       width: 35px;
       height: 35px;
     }
-
+    .variant {
+      padding: 10px 20px;
+    }
     .variant-heading {
       font-size: 18px;
     }
@@ -992,13 +996,13 @@
       font-size: 17px;
     }
     .final-pricing {
-      font-size: 15px;
+      font-size: 16px;
     }
     .final-pricing span {
-      padding: 10px;
+      padding: 10px 15px;
     }
     .arrow {
-      width: 18px;
+      width: 19px;
     }
     .buzzar-review-msg {
       padding: 20px;
@@ -1018,7 +1022,7 @@
       padding: 0 20px;
     }
     .details > div {
-      margin-top: 15px;
+      margin-top: 25px;
     }
     .info-heading {
       font-size: 20px;
@@ -1031,6 +1035,22 @@
     .review-this-product .info-heading {
       padding: 15px 20px;
       margin: unset;
+    }
+    .product-for-review {
+      width: 90px;
+      height: 160px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .variants-wrapper {
+      grid-gap: 20px;
+    }
+    .variant-heading {
+      font-size: 16px;
+    }
+    .arrow-down {
+      width: 15px;
     }
   }
 </style>

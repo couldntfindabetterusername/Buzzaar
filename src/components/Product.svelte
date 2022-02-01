@@ -19,7 +19,7 @@
   let screenWidth;
   $: activeHeight =
     screenWidth <= 480
-      ? (screenWidth * 0.9 * 0.75 + 15).toString() + "px"
+      ? (screenWidth * 0.85 * 0.75 + 15).toString() + "px"
       : screenWidth <= 700
       ? "250px"
       : screenWidth <= 768
@@ -231,7 +231,7 @@
   @media screen and (max-width: 480px) {
     .container {
       margin: 15px auto 0 auto;
-      width: 90%;
+      width: 85%;
       transform: unset;
       padding: 20px 15px;
     }
