@@ -4,9 +4,9 @@
   let openModal = false;
   let modalContainer, screenWidth;
 
-  $: imgWidth = ((screenWidth - 130) / 3).toString() + "px";
+  $: imgWidth = ((screenWidth - 105) / 3).toString() + "px";
   $: smallImgWidth = ((screenWidth - 130) / 6).toString() + "px";
-  $: imgHeight = ((screenWidth - 130) / 3 + 10).toString() + "px";
+  $: imgHeight = ((screenWidth - 105) / 3).toString() + "px";
 </script>
 
 <div
@@ -207,13 +207,14 @@
     .container {
       width: unset;
       padding: 10px;
+      margin-bottom: unset;
     }
     /* .product-name {
       font-size: 16px;
     } */
     .images {
       grid-template-rows: 1fr 1fr;
-      grid-gap: 10px;
+      grid-gap: 6px;
     }
     .img {
       width: var(--small-width);

@@ -72,7 +72,7 @@
   @media screen and (max-width: 480px) {
     main {
       border: unset;
-      margin: 0 25px;
+      margin: 0 20px;
     }
     .search-bar {
       width: var(--width);

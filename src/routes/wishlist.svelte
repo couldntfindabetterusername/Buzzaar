@@ -48,7 +48,7 @@
     main {
       padding: unset;
       border: unset;
-      margin: 0 25px;
+      margin: 0 20px;
     }
     div {
       margin: 15px;

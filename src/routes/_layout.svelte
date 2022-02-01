@@ -126,6 +126,7 @@
       margin-top: 90px;
       flex-direction: column;
       margin-left: unset;
+      background: #fbfbfb;
     }
 
     .extra {
