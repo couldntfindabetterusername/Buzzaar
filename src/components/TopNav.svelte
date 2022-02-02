@@ -157,7 +157,7 @@
     justify-content: space-between;
     align-items: center;
     color: #99319b;
-    padding: 20px 0;
+    height: 130px;
     border-bottom: 0.5px solid #c4c4c48e;
     left: var(--left);
     background: #ffffff;
@@ -280,7 +280,7 @@
   @media screen and (max-width: 850px) {
     nav {
       width: var(--tab-width);
-      padding: 30px 60px;
+      padding: 0 60px;
       justify-content: space-between;
       right: 0;
     }

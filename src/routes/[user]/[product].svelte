@@ -178,7 +178,7 @@
               >check&nbsp;<img
                 class="arrow"
                 src={ArrowPurple}
-                style="width:21px;"
+                style="width:25px;height:21px"
                 alt=""
               /></a
             >
@@ -249,7 +249,7 @@
                   dropdownOpen1 = false;
                 }}
               >
-                <span class="variant-heading">Colors</span>
+                <span class="variant-heading">Colours</span>
                 <span
                   class="arrow-down"
                   style="background:url({ArrowDown});background-size:cover;background-position:center;{dropdownopen2
@@ -685,9 +685,10 @@
     font-weight: 700;
   }
   .details {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 30px 0;
+    margin: 30px 150px;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 1fr;
   }
   .info-heading {
     font-size: 24px;
@@ -722,8 +723,9 @@
     margin: 40px 0;
   }
   .product-for-review {
-    width: 160px;
-    height: 240px;
+    width: 162px;
+    height: 288px;
+
     border-radius: 10px;
   }
   .responsive-mobile {

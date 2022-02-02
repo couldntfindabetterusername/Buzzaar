@@ -39,12 +39,14 @@
     display: flex;
     align-items: center;
     width: 550px;
+    background: #ffffff;
   }
   #search-icon {
     width: 20px;
     margin-right: 15px;
   }
   input {
+    background: #ffffff;
     border: none;
     outline: none;
     font-size: 18px;
