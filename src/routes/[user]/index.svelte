@@ -114,7 +114,6 @@
         <span id="user-msg">{name}'s message</span>
         <p id="about">{bio} wcjnk jbxkq knxkq jxnqlnl xejqkn</p>
       </div>
-      <img src={ChatBubble} alt="" />
     </div>
   </div>
 
@@ -127,69 +126,27 @@
           tabHandler(e);
         }}>Products</span
       >
-      <span
+      <!-- <span
         class="tab-name"
         on:click={(e) => {
           tabOpen = false;
           tabHandler(e);
         }}>Collections</span
-      >
+      > -->
     </div>
     <hr />
     <div class="products-gallery" style="display:{tabOpen ? 'grid' : 'none'}">
-      <!-- {#each products as product}
-        <a href="/{username}/{product.productId}">
-          <div class="card">
-            <span class="product-name">{product.productName}</span>
-            <div class="images">
-              <div
-                class="main-img"
-                style="background:url({product
-                  .productImages[0]});background-size:cover;background-position:center"
-              />
-              <div class="side-imgs">
-                <div
-                  class="side-img"
-                  style="background:url({product
-                    .productImages[1]});background-size:cover;background-position:center"
-                />
-                <div
-                  class="side-img"
-                  style="background:url({product
-                    .productImages[2]});background-size:cover;background-position:center"
-                />
-              </div>
-            </div>
-          </div>
-        </a>
-      {/each} -->
       {#each products as product}
         <CompactProduct {product} />
       {/each}
     </div>
 
-    <div
+    <!-- <div
       class="collections-gallery"
       style="display:{tabOpen ? 'none' : 'grid'}"
     >
-      {#each collections as collection}
-        <div class="collection">
-          <span class="collection-name">{collection.collectionName}</span>
-          <div class="collection-grid">
-            {#each collection.collectionProducts as collectionProduct}
-              <div
-                class="collection-product"
-                style="background:url({collectionProduct.collectionProductImg});background-size:cover;background-position:center"
-              >
-                <span class="collection-product-name"
-                  >{collectionProduct.collectionProductName}</span
-                >
-              </div>
-            {/each}
-          </div>
-        </div>
-      {/each}
-    </div>
+      
+    </div> -->
   </div>
 </main>
 
@@ -204,12 +161,12 @@
   }
   main {
     font-family: "Montserrat", sans-serif;
-    width: 1100px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: auto;
-    background: #fbfbfb;
+    background: rgba(251, 251, 251, 0.4);
   }
   .user-info {
     margin: 50px 0;
@@ -289,11 +246,7 @@
     font-weight: 500;
     color: #444;
   }
-  .bio img {
-    width: 45px;
-    height: 45px;
-    margin: 15px;
-  }
+
   .gallery {
     width: 1150px;
     display: flex;
@@ -319,6 +272,11 @@
   .tabs span.active {
     color: #444444;
     border-bottom: 2px solid #444444;
+  }
+  hr {
+    height: 0.7px;
+    border: unset;
+    background: #c4c4c4;
   }
   .products-gallery {
     display: grid;
@@ -362,7 +320,7 @@
     overflow: hidden;
   } */
 
-  .collection {
+  /* .collection {
     margin-top: 50px;
     border: 0.3px solid #c4c4c4;
     border-radius: 10px;
@@ -393,7 +351,7 @@
     text-align: center;
     line-height: 24px;
     background: rgba(255, 255, 255, 0.8);
-  }
+  } */
 
   .responsive-mobile {
     display: none;
@@ -403,9 +361,6 @@
   }
 
   @media screen and (max-width: 1550px) {
-    main {
-      width: auto;
-    }
     .gallery {
       width: auto;
     }
@@ -473,9 +428,6 @@
     }
     .bio {
       margin-top: 40px;
-    }
-    .bio img {
-      display: none;
     }
     .tabs {
       margin: unset;
@@ -552,9 +504,6 @@
     }
     .bio {
       margin-top: 20px;
-    }
-    .bio img {
-      display: none;
     }
     #user-msg {
       font-size: 15px;

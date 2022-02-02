@@ -63,6 +63,7 @@
     border-radius: 10px;
     padding: 15px;
     transition: all 0.5s ease-in-out;
+    background: #ffffff;
   }
   .product-name {
     font-size: 20px;
