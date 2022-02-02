@@ -18,14 +18,12 @@
     style="--margin-left:{segment === undefined ||
     segment === 'search' ||
     segment === 'add' ||
-    segment === 'wishlist' ||
-    segment === 'user'
+    segment === 'wishlist'
       ? '300px'
       : '100px'};--margin-left-at-1400:{segment === undefined ||
     segment === 'search' ||
     segment === 'add' ||
-    segment === 'wishlist' ||
-    segment === 'user'
+    segment === 'wishlist'
       ? '220px'
       : '80px'};"
   >

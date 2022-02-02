@@ -457,6 +457,9 @@
       font-size: 16px;
       padding: 10px 15px;
     }
+    .amount-1 {
+      padding: unset;
+    }
     .arrow {
       width: 19px;
     }
