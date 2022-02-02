@@ -21,7 +21,7 @@
       // hamburgerBG.style.opacity = "1";
       // hamburgerBG.style.display = "block";
 
-      if (screenWidth > 480 && screenWidth <= 768) {
+      if (screenWidth > 480 && screenWidth <= 850) {
         menuWrapper.style.transform = "translateX(-60px)";
       } else {
         menuWrapper.style.transform = "translateX(0)";
@@ -60,8 +60,7 @@
     : ''};--width:{width};--tab-width:{tabWidth};{segment === undefined ||
   segment === 'search' ||
   segment === 'add' ||
-  segment === 'wishlist' ||
-  segment === 'user'
+  segment === 'wishlist'
     ? '--left:100px;border-bottom:unset;--responsive-left:60px;--responsive-left-mobile:0'
     : ''}"
 >

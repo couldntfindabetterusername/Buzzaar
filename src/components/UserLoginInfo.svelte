@@ -49,7 +49,7 @@
           modalContainer.style.transform = "translateY(-100px)";
         }}
         >Sign up
-        {#if width > 1400 || width <= 480}
+        {#if width > 1400 || (width <= 480 && width >= 420)}
           for free
         {/if}
       </span>
@@ -474,6 +474,32 @@
   }
 
   @media screen and (max-width: 850px) {
+    main {
+      background: unset;
+      border: unset;
+      width: 100%;
+    }
+    .container {
+      margin: 20px 0;
+      color: #ffffff;
+    }
+    .signup,
+    .login {
+      font-size: 21px;
+      font-weight: 500;
+      margin: 15px 0;
+      color: #ffffff;
+    }
+    .signup {
+      margin-top: 40px;
+      background: #ffffff;
+      color: #99319b;
+    }
+    .or {
+      font-size: 18px;
+      margin: unset;
+      font-weight: 500;
+    }
     section {
       align-items: unset;
     }
@@ -522,6 +548,9 @@
     .show-password {
       width: 24px;
     }
+    .google-btn {
+      margin-top: unset;
+    }
 
     #login-heading {
       font-size: 23px;
@@ -531,33 +560,6 @@
     }
   }
   @media screen and (max-width: 768px) {
-    main {
-      background: unset;
-      border: unset;
-      width: 100%;
-    }
-    .container {
-      margin: 20px 0;
-      color: #ffffff;
-    }
-    .signup,
-    .login {
-      font-size: 21px;
-      font-weight: 500;
-      margin: 15px 0;
-      color: #ffffff;
-    }
-    .signup {
-      margin-top: 40px;
-      background: #ffffff;
-      color: #99319b;
-    }
-    .or {
-      font-size: 18px;
-      margin: unset;
-      font-weight: 500;
-    }
-
     section {
       top: unset;
       transform: translateY(100vh);
@@ -588,5 +590,30 @@
     input {
       font-size: 16px;
     }
+  }
+
+  @media screen and (max-width: 480px) {
+    .modal-heading-wrapper {
+      width: -webkit-fill-available;
+    }
+    .modal-heading,
+    .bottom {
+      text-align: center;
+    }
+    /* .form-item {
+      width: calc(100vw - 60px);
+    }
+    .btn {
+      width: -webkit-fill-available;
+    } */
+    /* input,
+    .btn {
+      width: calc(100% - 50px);
+    }
+    #email,
+    #password,
+    #phone {
+      width: calc(100% - 90px);
+    } */
   }
 </style>

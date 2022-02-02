@@ -19,22 +19,19 @@
   style="--width: {segment === undefined ||
   segment === 'search' ||
   segment === 'add' ||
-  segment === 'wishlist' ||
-  segment === 'user'
+  segment === 'wishlist'
     ? '300px'
     : '100px'};
     --box-shadow:{segment === undefined ||
   segment === 'search' ||
   segment === 'add' ||
-  segment === 'wishlist' ||
-  segment === 'user'
+  segment === 'wishlist'
     ? 'unset'
     : '2px 0 10px rgb(68 68 68 / 15%)'};
     --width-at-1400:{segment === undefined ||
   segment === 'search' ||
   segment === 'add' ||
-  segment === 'wishlist' ||
-  segment === 'user'
+  segment === 'wishlist'
     ? '220px'
     : '80px'};{style}
     "
@@ -44,8 +41,7 @@
     style="--nav-icons-height:{segment === undefined ||
     segment === 'search' ||
     segment === 'add' ||
-    segment === 'wishlist' ||
-    segment === 'user'
+    segment === 'wishlist'
       ? '300px'
       : '360px'}"
   >
@@ -56,8 +52,7 @@
         style="--bar-display: {segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
-        segment === 'wishlist' ||
-        segment === 'user'
+        segment === 'wishlist'
           ? 'inline block'
           : 'none'};"
       /><a
@@ -65,8 +60,7 @@
         style="--link-margin:{segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
-        segment === 'wishlist' ||
-        segment === 'user'
+        segment === 'wishlist'
           ? '0'
           : 'auto'}"
         ><img src={segment === undefined ? HomeAlt : Home} alt="" /><span
@@ -75,8 +69,7 @@
           style="--display:{segment === undefined ||
           segment === 'search' ||
           segment === 'add' ||
-          segment === 'wishlist' ||
-          segment === 'user'
+          segment === 'wishlist'
             ? 'inline block'
             : 'none'}">Home</span
         ></a
@@ -89,8 +82,7 @@
         style="--bar-display: {segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
-        segment === 'wishlist' ||
-        segment === 'user'
+        segment === 'wishlist'
           ? 'inline block'
           : 'none'};"
       /><a
@@ -98,8 +90,7 @@
         style="--link-margin:{segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
-        segment === 'wishlist' ||
-        segment === 'user'
+        segment === 'wishlist'
           ? '0'
           : 'auto'}"
         ><img src={segment === "search" ? LoupeAlt : Loupe} alt="" /><span
@@ -108,8 +99,7 @@
           style="--display:{segment === undefined ||
           segment === 'search' ||
           segment === 'add' ||
-          segment === 'wishlist' ||
-          segment === 'user'
+          segment === 'wishlist'
             ? 'inline block'
             : 'none'}">Search</span
         ></a
@@ -122,8 +112,7 @@
         style="--bar-display: {segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
-        segment === 'wishlist' ||
-        segment === 'user'
+        segment === 'wishlist'
           ? 'inline block'
           : 'none'};"
       /><a
@@ -131,8 +120,7 @@
         style="--link-margin:{segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
-        segment === 'wishlist' ||
-        segment === 'user'
+        segment === 'wishlist'
           ? '0'
           : 'auto'}"
         ><img src={segment === "add" ? AddAlt : Add} alt="" /><span
@@ -141,8 +129,7 @@
           style="--display:{segment === undefined ||
           segment === 'search' ||
           segment === 'add' ||
-          segment === 'wishlist' ||
-          segment === 'user'
+          segment === 'wishlist'
             ? 'inline block'
             : 'none'}">Add product</span
         ></a
@@ -155,8 +142,7 @@
         style="--bar-display: {segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
-        segment === 'wishlist' ||
-        segment === 'user'
+        segment === 'wishlist'
           ? 'inline block'
           : 'none'};"
       /><a
@@ -164,8 +150,7 @@
         style="--link-margin:{segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
-        segment === 'wishlist' ||
-        segment === 'user'
+        segment === 'wishlist'
           ? '0'
           : 'auto'}"
         ><img
@@ -177,8 +162,7 @@
           style="--display:{segment === undefined ||
           segment === 'search' ||
           segment === 'add' ||
-          segment === 'wishlist' ||
-          segment === 'user'
+          segment === 'wishlist'
             ? 'inline block'
             : 'none'}">Wishlist</span
         ></a
@@ -191,8 +175,7 @@
         style="--bar-display: {segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
-        segment === 'wishlist' ||
-        segment === 'user'
+        segment === 'wishlist'
           ? 'inline block'
           : 'none'};"
       /><a
@@ -200,8 +183,7 @@
         style="--link-margin:{segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
-        segment === 'wishlist' ||
-        segment === 'user'
+        segment === 'wishlist'
           ? '0'
           : 'auto'}"
         ><img src={segment === "user" ? UserAlt : User} alt="" /><span
@@ -210,8 +192,7 @@
           style="--display:{segment === undefined ||
           segment === 'search' ||
           segment === 'add' ||
-          segment === 'wishlist' ||
-          segment === 'user'
+          segment === 'wishlist'
             ? 'inline block'
             : 'none'}">User</span
         ></a
