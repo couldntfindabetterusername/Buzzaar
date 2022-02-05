@@ -2,8 +2,10 @@
   import Icon from "../assets/loupe.png";
   import Data from "../homePageProductsData";
   import ProductGrid from "../components/ProductGrid.svelte";
+  import Illustration from "../assets/modal illustration.png";
 
   let screenWidth;
+  let loggedIn = false;
 
   $: width = (screenWidth - 110).toString() + "px";
 </script>
