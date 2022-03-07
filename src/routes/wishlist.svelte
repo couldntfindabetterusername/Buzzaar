@@ -2,7 +2,7 @@
   import ProductGrid from "../components/ProductGrid.svelte";
   import Data from "../homePageProductsData";
   import Illustration from "../assets/modal illustration.png";
-  let loggedIn = false;
+  let loggedIn = true;
   let modal;
 </script>
 

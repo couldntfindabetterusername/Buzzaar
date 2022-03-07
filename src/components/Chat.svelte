@@ -34,6 +34,8 @@
     border-radius: 15px;
     margin-top: 30px;
     overflow: hidden;
+    position: fixed;
+    transform: translateY(385px);
   }
   .heading {
     font-size: 25px;

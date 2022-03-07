@@ -20,7 +20,7 @@
   segment === 'search' ||
   segment === 'add' ||
   segment === 'wishlist'
-    ? '300px'
+    ? '260px'
     : '100px'};
     --box-shadow:{segment === undefined ||
   segment === 'search' ||
@@ -194,7 +194,7 @@
           segment === 'add' ||
           segment === 'wishlist'
             ? 'inline block'
-            : 'none'}">User</span
+            : 'none'}">Profile</span
         ></a
       >
     </div>
@@ -232,7 +232,7 @@
   .bar {
     border-left: 6px solid #99319b;
     visibility: hidden;
-    margin-right: 50px;
+    margin-right: 30px;
     display: var(--bar-display);
   }
   .border {
@@ -258,9 +258,9 @@
     nav {
       width: var(--width-at-1400);
     }
-    .bar {
+    /* .bar {
       margin-right: 30px;
-    }
+    } */
     .nav-item-name {
       font-size: 20px;
     }

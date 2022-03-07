@@ -19,7 +19,7 @@
     segment === 'search' ||
     segment === 'add' ||
     segment === 'wishlist'
-      ? '300px'
+      ? '260px'
       : '100px'};--margin-left-at-1400:{segment === undefined ||
     segment === 'search' ||
     segment === 'add' ||
@@ -33,8 +33,8 @@
       style={segment === undefined ||
       segment === "search" ||
       segment === "wishlist"
-        ? "--div-margin-top:130px;--div-margin-left:50px"
-        : "--div-margin-top:130px;"}
+        ? "--div-margin-top:120px;--div-margin-left:50px"
+        : "--div-margin-top:120px;"}
     >
       <slot />
 
@@ -49,6 +49,7 @@
       >
         <UserLoginInfo />
         <Chat />
+        <div class="extra-side-panel" />
       </div>
     </div>
   </article>
@@ -86,9 +87,18 @@
     display: var(--display);
   }
 
+  .extra-side-panel {
+    width: 300px;
+    height: 20px;
+    display: block;
+  }
   @media screen and (max-width: 1400px) {
     article {
       margin-left: var(--margin-left-at-1400);
+    }
+
+    .extra-side-panel {
+      width: 200px;
     }
   }
 

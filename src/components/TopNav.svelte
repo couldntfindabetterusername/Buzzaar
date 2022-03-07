@@ -156,7 +156,7 @@
     justify-content: space-between;
     align-items: center;
     color: #99319b;
-    height: 130px;
+    height: 120px;
     border-bottom: 0.5px solid #c4c4c48e;
     left: var(--left);
     background: #ffffff;
