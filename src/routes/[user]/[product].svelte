@@ -355,7 +355,7 @@
         </div>
       </div>
       <div class="review-this-product">
-        <span class="info-heading">Review these products</span>
+        <span class="info-heading">Review this product here</span>
         <div class="review-product-grid">
           {#each productForReview as product}
             <div
@@ -398,6 +398,7 @@
   .left {
     width: 55%;
     display: flex;
+    background: #fbfbfb;
     justify-content: center;
     align-items: center;
   }
