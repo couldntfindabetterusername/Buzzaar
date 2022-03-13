@@ -3,6 +3,7 @@
   import ChatIconDark from "../assets/chat icon dark.png";
   import BagDark from "../assets/bag(dark).png";
   import BagLight from "../assets/bag(purple).png";
+  import DownArrow from "../assets/downward-arrow.png";
   let menuOpen = false,
     menuBtn,
     menuWrapper,
@@ -45,8 +46,16 @@
 
   let screenHeight, screenWidth;
 
-  $: tabWidth = (screenWidth - 180).toString() + "px";
-  $: width = (screenWidth - 80).toString() + "px";
+  $: tabWidth =
+    segment != "signup" && segment != "login"
+      ? (screenWidth - 180).toString() + "px"
+      : (screenWidth - 180 + 60).toString() + "px";
+  $: width =
+    segment != "signup" && segment != "login"
+      ? (screenWidth - 80).toString() + "px"
+      : screenWidth > 480
+      ? (screenWidth + 20).toString() + "px"
+      : (screenWidth - 80).toString() + "px";
   $: height = (screenHeight + 0).toString() + "px";
   $: hamburgerWrapperHeight = (screenHeight - 130).toString() + "px";
   export let segment;
@@ -62,7 +71,8 @@
   segment === 'add' ||
   segment === 'wishlist'
     ? '--left:100px;border-bottom:unset;--responsive-left:60px;--responsive-left-mobile:0'
-    : ''}"
+    : ''}{(segment === 'signup' || segment === 'login') &&
+    'box-shadow:0 10px 10px rgba(0,0,0,0.1)'}"
 >
   <a href="/" class="logo">Buzzaar</a>
 
@@ -84,9 +94,11 @@
 
   <!--for desktop-->
   <div class="nav-items">
-    <a href="/contact">Contact</a>
-    <a href="/faq">FAQ</a>
-    <a href="/help">Help</a>
+    <button class="collections"
+      >Collections <span class="down-arrow-container"
+        ><img src={DownArrow} alt="" /></span
+      ></button
+    >
     <a href="/bag" class="topnav-btn"
       >Bag&nbsp;<img class="bag-icon" src={BagLight} alt="" /></a
     >
@@ -172,15 +184,40 @@
   }
   .nav-items {
     font-family: "Montserrat", sans-serif;
-    width: 580px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
     font-size: 18px;
     margin-right: 80px;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
   }
-  .nav-items a {
+  .nav-items a,
+  button {
     color: #444;
+  }
+
+  .nav-items button.collections {
+    font: inherit;
+    background: transparent;
+    border: unset;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-items button span.down-arrow-container {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #efefef;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-items button span.down-arrow-container img {
+    transform: translateY(1px);
+    width: 20px;
   }
   .bag-icon {
     width: 20px;
