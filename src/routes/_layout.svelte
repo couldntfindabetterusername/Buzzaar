@@ -3,6 +3,7 @@
   import TopNav from "../components/TopNav.svelte";
   import UserLoginInfo from "../components/UserLoginInfo.svelte";
   import Chat from "../components/Chat.svelte";
+  import Footer from "../components/Footer.svelte";
   export let segment;
 
   let screenWidth;
@@ -11,21 +12,21 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 <main>
-  {#if screenWidth > 768}
-    <LeftNav {segment} />{/if}
+  {#if segment != "signup" && segment != "login"}
+    {#if screenWidth > 768}
+      <LeftNav {segment} />{/if}{/if}
 
   <article
-    style="--margin-left:{segment === undefined ||
-    segment === 'search' ||
-    segment === 'add' ||
-    segment === 'wishlist'
-      ? '260px'
-      : '100px'};--margin-left-at-1400:{segment === undefined ||
-    segment === 'search' ||
-    segment === 'add' ||
-    segment === 'wishlist'
-      ? '220px'
-      : '80px'};"
+    style={segment != "signup" && segment != "login"
+      ? segment === undefined ||
+        segment === "search" ||
+        segment === "add" ||
+        segment === "wishlist"
+        ? "--margin-left:260px;--margin-left-at-1400:220px;bg-color:#fbfbfb;"
+        : "--margin-left:100px;--margin-left-at-1400:80px;bg-color:#fbfbfb;"
+      : screenWidth >= 900
+      ? "--margin-left:0;"
+      : "--margin-left:0;margin-left:0;--bg-color:transparent"}
   >
     <TopNav {segment} />
     <div
@@ -52,8 +53,13 @@
         <div class="extra-side-panel" />
       </div>
     </div>
+
+    {#if segment != undefined && segment != "search" && segment != "add" && segment != "wishlist" && segment != "login" && segment != "signup"}
+      <Footer />
+    {/if}
   </article>
-  {#if screenWidth <= 768}
+
+  {#if screenWidth <= 768 && segment != "signup" && segment != "login"}
     <LeftNav {segment} />{/if}
 </main>
 
@@ -110,12 +116,9 @@
 
   @media screen and (max-width: 850px) {
     article {
-      margin-left: 0;
-    }
-
-    .div {
       margin-left: 60px;
     }
+
     .side-panel {
       display: none;
     }
@@ -134,7 +137,7 @@
       margin-top: 90px;
       flex-direction: column;
       margin-left: unset;
-      background: #fbfbfb;
+      background: var(--bg-color);
     }
 
     .extra {
