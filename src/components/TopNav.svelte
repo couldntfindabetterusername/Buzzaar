@@ -61,6 +61,17 @@
   export let segment;
 </script>
 
+<svelte:head>
+  {#if menuOpen && screenWidth <= 850}
+    <style>
+      body {
+        height: var(--height);
+        overflow-y: hidden;
+      }
+    </style>
+  {/if}
+</svelte:head>
+
 <svelte:window bind:innerHeight={screenHeight} bind:innerWidth={screenWidth} />
 
 <nav
@@ -138,7 +149,7 @@
             >
 
             {#if isBuyer}
-              <a href="/seller" class="become-seller-btn">Become a seller</a>
+              <a href="/" class="become-seller-btn">Become a seller</a>
             {/if}
           {:else}
             <UserLogin />

@@ -116,7 +116,7 @@
           ? 'inline block'
           : 'none'};"
       /><a
-        href="/add"
+        href="/"
         style="--link-margin:{segment === undefined ||
         segment === 'search' ||
         segment === 'add' ||
