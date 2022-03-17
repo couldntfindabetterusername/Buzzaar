@@ -41,3 +41,6 @@ Back end:
 
 _Src_ folder contains all the important files we have to deal with.<br>
 There is an _assets_ folder which contain icons and images, a _components_ folder which contains all the components, a _routes_ folder which contains all the routes, a _chatData_, a _data_, a _homePageProductData_ files which contain sample data(for testing purpose) which is being displayed on website and a _template.html_ file where all the components and routes are being mounted.
+
+---
+## Layout.svelte
